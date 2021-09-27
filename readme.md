@@ -3,5 +3,7 @@
 #### 克隆地址
 
 - `https://gitee.com/nowletsgo/goat0722.git` gitee地址
-- 
+- `https://github.com/nowLetsgo/goat0722.git` github地址
+
+
 
