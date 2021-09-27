@@ -2,5 +2,6 @@
 
 #### 克隆地址
 
+- `https://gitee.com/nowletsgo/goat0722.git` gitee地址
 - 
-- 
+
