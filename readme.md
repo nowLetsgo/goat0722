@@ -6,6 +6,7 @@
 - `https://github.com/nowLetsgo/goat0722.git` github地址
 
 ### 好好学习 天天向上
+### 祝你们人人20K
 
 
 
