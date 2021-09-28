@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            击鼓传花：
+                规定猴子的个数，规定每次踢出的位置，得到最终的猴子的编号
+        
+        */
+        //n是猴子个数 m是踢出的位置
+        function f(n, m) {
+            //首先对所有的猴子进行编号放在数组中
+            var arr = [];
+            for (var i = 1; i <= n; i++) {
+                arr.push(i);
+            }
+            console.log("arr", arr);
+
+            //判断只要猴子数量还有大于1个的，则继续踢出
+            while (arr.length > 1) {
+                //每次进入while之后，开始对当前进入while的数组开始操作，踢出一个元素
+                //遍历m次 即可结束操作
+                for (var i = 0; i < m; i++) {
+                    //每次遍历都把当前数组的值 添加到数组的末尾 换了一个位置
+                    arr.push(arr.shift())
+                }
+                //删除数组的末尾的值 因为刚才已经把第m个放到最末了
+                arr.pop();
+            }
+
+            return arr;
+
+        }
+
+        var re = f(8, 3);
+        console.log("re", re);
+    </script>
+</body>
+
+</html>

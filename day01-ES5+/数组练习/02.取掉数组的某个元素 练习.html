@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将数组的0去掉
+        var myArr = [1, 3, 0, 0, 3, 0, 4, 0, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0];
+        //方法1：普通遍历 改变原数组
+        /* function delete0(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === 0) {
+                    arr.splice(i, 1);
+                    //因为删除元素之后，数组中被删除元素后的元素下标全部向前移动一位，所以在删除后不能让i递增，下次还要检测当前下标位置
+                    i--;
+                }
+            }
+            return arr;
+        } */
+        //方法2：普通遍历，不改变原数组 返回新数组
+        /* function delete0(arr) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; i++) {
+                //如果arr当前值为0，则直接跳过本次
+                if (arr[i] === 0) {
+                    continue;
+                }
+                //如果arr的值不为0 则添加到新数组
+                newArr.push(arr[i])
+            }
+            return newArr;
+        } */
+
+
+        //方法3：filter方法
+        /* function delete0(arr) {
+            //使用filter过滤出不是0的值 然后把filter的结果返回
+            return arr.filter(function (item) {
+                return item !== 0;
+                // return item;
+            })
+        } */
+
+        //方法4：reduce方法
+        /* function delete0(arr) {
+            return arr.reduce(function (p, c) {
+                //如果c为0 则不追加 直接返回一个当前p值
+                if (c === 0) {
+                    return p;
+                }
+                //如果c不为0 则追加进去
+                p.push(c);
+                return p;
+            }, [])
+        } */
+
+        var re = delete0(myArr);
+        console.log(re, myArr);
+
+    </script>
+</body>
+
+</html>

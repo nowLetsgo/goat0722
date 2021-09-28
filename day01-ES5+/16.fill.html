@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            fill:
+                - 填充数组
+                - 参数1：填充的值
+                - 参数2：填充的起始位置
+                - 参数3：填充的结束位置
+        
+        */
+        var arr = new Array(10);
+
+        var re = arr.fill(1, 2, 5);
+        console.log(arr, re); //返回原数组的引用，改变原数组
+        console.log(arr === re);
+    </script>
+</body>
+
+</html>

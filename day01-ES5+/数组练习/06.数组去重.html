@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            数组去重方法三：
+        
+        */
+        /* function deleteRepeat(arr) {
+            var newArr = [];
+            //遍历数组，判断当前的值的第一次出现的位置，是否是对应当前遍历的下标，如果是，则第一次出现，添加到新数组中，否则不是第一次出现，则忽略
+            arr.forEach(function (item, index) {
+                if (index === arr.indexOf(item)) {
+                    newArr.push(item);
+                }
+            })
+            return newArr;
+        } */
+
+        /* function deleteRepeat(arr) {
+            //遍历数组，判断当前的值的第一次出现的位置，是否是对应当前遍历的下标，如果是，则第一次出现，添加到新数组中，否则不是第一次出现，则忽略
+            return arr.filter(function (item, index) {
+                return index === arr.indexOf(item);
+            })
+
+        } */
+
+
+
+        /* 
+            数组去重方法1：
+                把每一个值一次插入到新数组中，插入之前判断新数组是否存在这个值，如果有，则不插入
+
+        
+        */
+        /* function deleteRepeat(arr) {
+            var newArr = [];
+            //遍历数组
+            arr.forEach(function (item) {
+                // 判断新数组中是否存在和item一样的值， 如果存在则不插入，如果不存在则插入
+                if (newArr.indexOf(item) === -1) {
+                    newArr.push(item);
+                }
+            })
+
+            return newArr;
+        } */
+
+
+        function deleteRepeat(arr) {
+            var newArr = [];
+            return arr.reduce(function (p, c) {
+                //判断p中是否有c
+                if (p.indexOf(c) === -1) {
+                    p.push(c);
+                    return p;
+                }
+                //如果p中有c 则什么都不做 直接把p返回 用来下一次判断
+                return p;
+            }, [])
+        }
+        var myArr = [4, 3, 6, 4, 1, 6, 2, 9, 3, 7, 9, 6];
+        var re = deleteRepeat(myArr);
+        console.log(re, myArr);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            手写reverse
+        
+        */
+
+        function myReverse(arr) {
+            /* 
+                把数组的第一个值和最后一个值进行交换
+                把数组的第二个值和倒数第二个值进行交换
+                把数组第三个值和倒数第三个值进行交换
+                依次类推。。。
+                总共交换 parseInt(arr.length/2) 次 如果数组长度是奇数，最中间的值也不用换位置
+                
+                当交换的值是arr[i],被交换的值是arr[arr.length-1-i]
+            */
+            for (var i = 0; i < arr.length / 2; i++) {
+                // 初始化一个中间值 保存当前要交换的值
+                var temp = arr[i];
+                //因为 arr[i]已经被保存了，所以可以直接赋值为被交换的值
+                arr[i] = arr[arr.length - 1 - i]
+                //给被交换的元素赋值
+                arr[arr.length - 1 - i] = temp;
+            }
+
+            return arr;
+
+        }
+
+        var myArr = [1, 2, 3, 4, 5, 6, 7];
+        var re = myReverse(myArr);
+        console.log(myArr, re);
+        console.log(myArr === re);
+    </script>
+</body>
+
+</html>

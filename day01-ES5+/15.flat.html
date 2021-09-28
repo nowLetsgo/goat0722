@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            flat:
+                - 扁平化数组
+                - 参数是一个数值，代表拉平的层级
+        
+        */
+        var arr = [1, 2, [2, [3, 4, [5], 6], 7]];
+
+        // var re = arr.flat(3);
+        var re = arr.flat(Infinity);
+        console.log(re);
+    </script>
+</body>
+
+</html>

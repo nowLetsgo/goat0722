@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            数组去重方法1：
+                原始方法去重，返回去重后的数组 不能保证去重后的顺序
+
+        */
+        /* function deleteRepeat(arr) {
+            var newArr = [];
+            //第一层遍历，依次拿到每一个值  开始判断是否和后边的值有重复
+            outer: for (var i = 0; i < arr.length; i++) {
+                //每次拿到数组的一个值之后，遍历后边的元素，判断是否有相等的
+                for (var j = i + 1; j < arr.length; j++) {
+                    //只要后边的值有和当前被检测的值相等，则直接退出当前for  或者退出外层for执行下一次的外层for
+                    if (arr[i] === arr[j]) {
+                        // break;//退出当前内层for 但是外层for的当次内容执行完毕后，如果没有其他代码，直接可以执行下次的外层for
+                        continue outer; //直接退出当次的外层for  执行下一次的外层for
+                    }
+                }
+                //上边的内层for直到执行完成都没有退出，说明当前arr[i]后没有和它相等的元素了，我们可以取出来放到新数组中
+                newArr.push(arr[i])
+            }
+
+            return newArr;
+        } */
+
+
+
+        /* 
+            数组去重方法2：
+                原始遍历方法，检测每个值，如果后边有相同的，就直接删掉，修改了原数组
+        */
+        function deleteRepeat(arr) {
+            //第一层遍历，依次拿到每一个值  开始判断是否和后边的值有重复
+            for (var i = 0; i < arr.length; i++) {
+                //每次拿到数组的一个值之后，遍历后边的元素，判断是否有相等的
+                for (var j = i + 1; j < arr.length; j++) {
+                    //只要后边的值有和当前被检测的值相等，把这个重复的值删除掉
+                    if (arr[i] === arr[j]) {
+                        //删除重复的值
+                        arr.splice(j, 1)
+                        //只要使用原始的for循环，改变了原数组，则下标需要对应
+                        //因为我们删除了数组的某个值，所以数组的下标依次前进一位，但是我们的j依然会累加，就会少检测一个值，所以需要j--
+                        j--;
+                    }
+                }
+            }
+            //改变原数组 我们可以返回原数组的引用
+            return arr;
+        }
+        var myArr = [4, 3, 6, 4, 1, 6, 2, 9, 3, 7, 9, 6];
+        var re = deleteRepeat(myArr);
+        console.log(re, myArr);
+    </script>
+</body>
+
+</html>

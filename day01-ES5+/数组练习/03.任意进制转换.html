@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //把一个10进制的n 转为b进制的值 字符串输出
+        function toB(n, b) {
+            if (b > 36 || b < 2) {
+                throw new Error("进制错误 需要在2到36之间");
+                //throw后可以省略return
+            }
+            //初始化字符串 保存结果
+            var str = "";
+            //初始化一个对照表
+            var table = "0123456789abcdefghijklmnopqrstuvwxyz";
+            //初始化一个容器 盛放余数
+            var arr = [];
+
+            while (n > 0) {
+                //首先把n对b取余，得到余数
+                var temp = n % b;
+                //把当次得到的余数在对照表中找到对应的值 保存起来
+                arr.push(table[temp]);
+                //把n除2 取整
+                n = parseInt(n / b);
+            }
+            console.log("arr", arr);
+
+            //把arr的值倒着依次取出 放在字符串中
+            while (arr.length > 0) {
+                str += arr.pop();
+            }
+            return str;
+        }
+
+        var re = toB(25435, 37);
+        console.log("re", re);
+    </script>
+</body>
+
+</html>
