@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.create:
+                - 创建一个新对象
+                - create的第一个参数：设置创建新对象的隐式原型指向的原型对象，不能为空
+        
+        
+        */
+        //创建(可以书写继承)
+        var obj2 = {
+            name: "laowang"
+        }
+        var obj1 = Object.create(obj2);
+        console.log(obj1);
+        console.log(obj1.name);
+
+
+        //创建一个正常的对象 （和 {} 一样的对象）
+        var obj3 = Object.create(Object.prototype);
+        console.log(obj3);
+
+        //创建一个干干净净的对象
+        var obj4 = Object.create(null);
+        console.log(obj4);
+    </script>
+</body>
+
+</html>

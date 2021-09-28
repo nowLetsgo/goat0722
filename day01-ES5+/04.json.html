@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            xml和html:
+                xml:保存和传输数据
+                html:展示数据
+
+            json：
+                轻量级的数据交换格式
+                json格式和js对象类似，但是要求key一定用双引号
+                json格式请求到js中后，和js对象一致
+
+
+            json对象和json字符串互换：
+                - JSON.parse():把json字符串转为json对象
+                - JSON.stringify():把json对象转json字符串
+        
+        
+        */
+
+        //模拟ajax请求到json格式,真正拿到的json字符串
+        var datastr = '{"name": "张三","age": 18,"sex": "男","hobby": ["唱", "跳", "rap", "篮球"]}';
+
+        var result = JSON.parse(datastr);
+        console.log(result);
+
+
+        //json对象转json字符串
+        var obj = {
+            name: '张三',
+            age: 18,
+            sex: '男',
+            hobby: ["唱", "跳", "rap", "篮球"]
+        }
+
+        var objstr = JSON.stringify(obj);
+        console.log(objstr);
+    </script>
+</body>
+
+</html>

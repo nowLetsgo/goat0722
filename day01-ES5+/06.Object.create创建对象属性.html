@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.create:
+                - 创建一个新对象
+                - create的第一个参数：设置创建新对象的隐式原型指向的原型对象，不能为空
+                - create的第二个参数是一个对象，对象中是每一个的属性及属性描述符
+                    - value:属性的值
+                    - writable:属性值是否可以被修改，默认为false
+                    - enumerable:属性不可被枚举
+                    - configurable:属性是否可以被删除
+        
+        */
+
+        var obj1 = Object.create(null, {
+            name: {
+                value: "laowang",
+                writable: false,
+                enumerable: false,
+                configurable: true
+            }
+        })
+        //给obj1添加一个一般的属性
+        obj1.age = 18;
+
+        console.log(obj1);
+
+
+        //改
+        obj1.name = "xiaowang";
+        obj1.age = 20;
+        console.log("改", obj1);
+
+        //遍历
+        for (var key in obj1) {
+            console.log("遍历", key);
+        }
+
+        //删除
+        delete obj1.name;
+        delete obj1.age;
+        console.log(obj1);
+
+
+
+        
+    </script>
+</body>
+
+</html>
