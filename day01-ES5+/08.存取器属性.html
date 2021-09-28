@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            存取器 属性（getter和setter）：
+                - 可以通过存取器属性获取或者设置对象内的某些属性的值
+                - 当给这个属性设置值的时候，则会接收到这个值进行处理，当获取这个属性的值的时候，会进行计算返回值
+        
+        
+        */
+
+        var user = {
+            firstName: "lao",
+            lastName: "li"
+        }
+
+        //存取器属性一般通过可描述的属性添加
+        Object.defineProperty(user, "fullName", {
+            //当这个存取器属性被获取值的时候，会自动的调用getter方法
+            get() {
+                //getter和setter方法中的this指向当前的对象
+                //getter的返回值 就是获取存取器属性得到的值
+                return this.firstName + " " + this.lastName;
+            },
+            //当这个存取器属性被设置值的时候，会自动调用setter方法
+            set(val) {
+                //setter的函数的第一个参数就是设置的值
+                var nameArr = val.split(" ");
+                this.firstName = nameArr[0]
+                this.lastName = nameArr[1]
+            }
+        })
+
+        console.log(user.fullName); //'lao li'
+        user.fullName = "xiao wang";
+        console.log(user);
+    </script>
+</body>
+
+</html>
