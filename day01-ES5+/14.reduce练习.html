@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 1. 已知一个url地址 'http://www.baidu.com?user=laoli&pass=123&score=100';
+        从地址中得到查询字符串， 并以键值对的形式组成一个对象， 如下 {
+            user: laoli,
+            pass: 123,
+            score: 100
+        } */
+
+        /* var url = 'http://www.baidu.com?user=laoli&pass=123&score=100';
+        var re = url.split("?")[1].split("&").reduce(function (p, c) {
+            //c是每次进来的值 'user=laoli'
+            var arr = c.split("=");
+            //向对象中累加属性
+            p[arr[0]] = arr[1];
+            //返回p 用来下一次累加
+            return p;
+        }, {})
+        console.log(re); */
+
+
+
+        /*  
+            计算每一个字符出现的次数
+            const str = "abcdaedfbcdba";
+        
+        */
+        /* const str = "abcdaedfbcdba";
+
+        var re = str.split("").reduce(function (p, c) {
+            p[c] ? p[c]++ : p[c] = 1;
+            return p;
+        }, {})
+
+        console.log(re); */
+
+
+        /* 
+            数组去重
+                arr.indexOf(item):得到arr中item第一次出现的位置，如果没有则直接返回-1
+                arr.includes(item)：判断arr中是否存在item 如果存在则返回true 否者返回false
+        
+        */
+
+        /* var arr = [4, 2, 6, 4, 7, 4, 3, 7, 1, 2, 1];
+        var re = arr.reduce(function (p, c) {
+            //  if (p.indexOf(c) === -1) {
+            //      p.push(c);
+            //  }
+
+            if (!p.includes(c)) {
+                p.push(c);
+            }
+            return p;
+        }, []);
+        console.log(re); */
+
+
+        /* 
+            扁平化数组
+        
+        */
+        var arr = [1, 2, [2, [3, 4, [5], 6], 7]];
+
+        function flat(arr) {
+            //判断如果进来flat的值不是数组，则直接把当前值返回即可 不需要reduce
+            if (!Array.isArray(arr)) {
+                return arr;
+            }
+            var re = arr.reduce(function (p, c) {
+                console.log(c);
+
+                //不能直接返回p 因为concat方法不改变原数组 返回一个合并后的新数组
+                //c可能是一个数组，所以在和p合并的时候，需要把c也给扁平化以下，所以开始递归
+                return p.concat(flat(c));
+            }, []);
+
+            return re
+        }
+
+
+        console.log(flat(arr));
+    </script>
+</body>
+
+</html>

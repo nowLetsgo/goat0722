@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            find:
+                - 遍历数组，查找符合条件的第一个值
+                - find返回查找到的这个值
+                - 数组的值依次进入回调函数，当回调函数返回true,则把当前值直接返回出来，并停止遍历
+        
+            findIndex:
+                - 和find一样，只不过返回的是查找到第一个符合条件元素的下标
+        */
+
+        var arr = [{
+            name: "laowang1",
+            sex: "男",
+            age: 18
+        }, {
+            name: "laowang2",
+            sex: "女",
+            age: 20
+        }, {
+            name: "laowang3",
+            sex: "男",
+            age: 11
+        }, {
+            name: "laowang4",
+            sex: "女",
+            age: 38
+        }];
+
+        console.log(arr);
+
+        //查找名字是老王2的人
+        var re = arr.find(function (item, index) {
+            console.log(item);
+            return item.name === "laowang2"
+        })
+        console.log(re);
+
+        var re = arr.findIndex(function (item, index) {
+            console.log(item);
+            return item.name === "laowang2"
+        })
+        console.log(re);
+    </script>
+</body>
+
+</html>

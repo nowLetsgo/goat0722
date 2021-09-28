@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            reduce:
+                - 遍历数组，累加每次的值
+                - reduce接受两个参数
+                    - 参数1:回调函数
+                    - 参数2：初始值(如果省略初始值，则把数组的第一个值当做初始值)
+                - reduce回调函数的参数：
+                    - 参数1：初始值或者上一次回调函数的返回值
+                    - 参数2：遍历数组时当次进入回调函数的值
+                    - 参数3：当次进入回调函数值的下标
+                    - 参数4：原数组的引用
+        
+        */
+
+
+        var arr = [3, 4, 1, 5, 6, 3, 4];
+
+
+        /* var re = arr.reduce(function (prev, current, index, arr) {
+            console.log(prev, current, index);
+            //每次把计算好的值返回出去供下一次累加时使用
+            return prev + current;
+        }, 0)
+
+        console.log(re); */
+
+
+        var re = arr.reduce(function (prev, current, index, arr) {
+            console.log(prev, current, index);
+            //每次把计算好的值返回出去供下一次累加时使用
+            return prev + current;
+        })
+
+        console.log(re);
+    </script>
+</body>
+
+</html>

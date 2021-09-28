@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            filter:
+                - 遍历数组，筛选出想要的值
+                - filter会返回一个新的数组
+                - 数组的值依次进入回调函数，当回调函数返回true,则把当前值拿到返回的数组中
+        
+        
+        */
+
+        var arr = [{
+            name: "laowang1",
+            sex: "男",
+            age: 18
+        }, {
+            name: "laowang2",
+            sex: "女",
+            age: 20
+        }, {
+            name: "laowang3",
+            sex: "男",
+            age: 11
+        }, {
+            name: "laowang4",
+            sex: "女",
+            age: 38
+        }];
+
+        console.log(arr);
+
+        //把男生过滤出来
+        var re = arr.filter(function (item, index) {
+            return item.sex === '男'
+        })
+
+        console.log(re);
+    </script>
+</body>
+
+</html>
