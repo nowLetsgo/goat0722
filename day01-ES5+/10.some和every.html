@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+
+            some:（一真即真）
+                - 遍历数组，返回一个布尔值
+                - 数组中的每一个值进入回调函数中，如果有一个回调函数返回true，则停止遍历，some方法直接返回值
+
+            every：（一假即假）
+                - 遍历数组，返回一个布尔值
+                - 数组中每一个值进入回调函数中，如果有一个回调函数返回false，则停止遍历，every直接返回false
+        
+        */
+        var arr = [{
+            name: "laowang1",
+            age: 18
+        }, {
+            name: "laowang2",
+            age: 20
+        }, {
+            name: "laowang3",
+            age: 11
+        }, {
+            name: "laowang4",
+            age: 38
+        }]
+        //判断所有的人员中，有没有小于18岁的，如果有，则立即查封
+        var re = arr.some(function (item, index) {
+            // console.log(item.name);
+            return item.age < 18
+        });
+        if (re) {
+            console.log("查封");
+        }
+
+
+        //判断是否所有的人员都大于等于18岁，如果是则ok，否则查封
+        var re = arr.every(function (item, index) {
+            return item.age >= 18
+        })
+        if (!re) {
+            console.log("查封");
+        }
+    </script>
+</body>
+
+</html>

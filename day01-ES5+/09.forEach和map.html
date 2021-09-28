@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            forEach：
+                - 遍历数组，一个个拿到数组的值到回调函数中进行操作
+
+            map：  
+                - 映射数组，一定会返回一个和原数组长度相同的新数组
+                - 原数组的值依次进入回调函数中，回调函数的返回值，就是对应新数组位置的值
+        
+        */
+
+
+        var arr = [{
+            name: "laowang1",
+            age: 18
+        }, {
+            name: "laowang2",
+            age: 20
+        }, {
+            name: "laowang3",
+            age: 11
+        }, {
+            name: "laowang4",
+            age: 38
+        }]
+
+        //把所有人的年龄+1
+        /* var newarr = []
+        arr.forEach(function (item, index) {
+            item.age++;
+            newarr.push(item);
+        })
+        console.log(newarr); */
+
+
+        /* arr.forEach(function (item, index) {
+            item.age++;
+        })
+        console.log(arr); */
+
+
+        var re = arr.map(function (item, index) {
+            item.age++;
+            return item;
+        })
+        console.log(re);
+    </script>
+</body>
+
+</html>
