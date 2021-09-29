@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            let声明：  
+                - ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效，也就是增加了块级作用域。 
+                - 特点：
+                    - 使用块级作用域
+        */
+
+        // 1.使用块级作用域
+        {
+            let a = 1;
+        }
+        // console.log(a); //ReferenceError: a is not defined
+
+        //2.块级作用域可以任意嵌套
+        {
+            {
+                let a = 1; {
+                    {
+                        {
+                            {
+                                {
+                                    console.log(a);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //3.没有声明提升
+        {
+            // console.log(a);
+            let a = 1; //Cannot access 'a' before initialization
+        }
+
+
+        //4.不允许重复声明
+        {
+            let a = 1;
+            let a = 2; //Identifier 'a' has already been declared
+        }
+    </script>
+</body>
+
+</html>

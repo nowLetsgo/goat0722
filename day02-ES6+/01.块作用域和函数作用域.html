@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            块作用域和函数作用域:
+                - 函数作用域：
+                    使用函数来划分作用域，每进入一个函数都会进入一个新的作用域
+
+                - 块级作用域：
+                    使用代码块{}来划分的作用域被称作为块级作用域
+
+                - 怎么判断某个变量是块作用还是函数作用域
+                    主要看这个变量是怎么被声明的，如果是var声明的，则这个变量是符合函数作用域的
+                    如果这个变量是const或者let声明的，则这个变量符合块级作用域
+                
+        
+        */
+
+        function fn() {
+            var a = 1; //局部变量
+        }
+
+
+
+        if (false) {
+            var b = 2;
+        }
+
+
+        {
+            // let c = 1;
+        }
+        // console.log(c);
+
+
+        /* 
+            ES5 规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明。
+            ES6 引入了块级作用域，明确允许在块级作用域之中声明函数。ES6 规定，块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用。
+            ES6 在附录 B里面规定，浏览器的实现可以不遵守上面的规定，有自己的行为方式。
+            解决方式：不要在块中声明函数，如果一定要声明函数，请使用函数表达式的写法
+        */
+        // fn1()
+        if (true) {
+            /* function fn1() {
+                console.log(1);
+            } */
+            let fn1 = function () {
+
+            }
+        }
+        fn1()
+
+
+        //Label声明语句
+        outer:
+            for (var i = 0; i < 5; i++) {
+                inner: for (var j = 0; j < 3; j++) {
+                    if (i == 3) {
+                        break inner
+                    }
+                    console.log(i);
+                }
+            }
+    </script>
+</body>
+
+</html>
