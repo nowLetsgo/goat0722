@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            1.箭头函数没有自己的this
+        */
+        console.log(this); //全局this指向window
+        //1
+        document.onclick = () => {
+            console.log(this); //去全局得到了this
+        }
+
+        //2
+        var name = "laoli";
+        const obj = {
+            name: "laowang",
+            do1() {
+                console.log(this.name);
+            },
+            do2: () => {
+                console.log(this.name);
+            },
+            do3: () => {
+                const do33 = () => {
+                    console.log(this.name);
+                }
+                do33();
+            },
+            do4() {
+                const do33 = () => {
+                    console.log(this.name);
+                }
+                do33();
+            }
+        }
+        obj.do1() //
+        obj.do2(); //
+        obj.do3(); //
+        obj.do4(); //
+
+
+        // 箭头函数不能用于构造函数， 也就是不能使用new关键字调用
+        const Person = () => {};
+        // new Person()// Person is not a constructor
+
+
+        // 箭头函数没有arguments对象
+        const ff = (...rest) => {
+            // console.log(arguments);//arguments is not defined
+            console.log(rest);
+        };
+        ff(1, 2, 3, 4)
+
+
+        // 箭头函数不能使用yield命令，意味着不能当作gennerator函数（后边会讲）
+    </script>
+</body>
+
+</html>

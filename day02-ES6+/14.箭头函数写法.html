@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //箭头函数的写法(箭头函数基本都是函数表达式)
+        function fn1() {
+            console.log(1);
+        }
+
+        const fn11 = () => {
+            console.log(1);
+        }
+
+
+        //当函数的参数有且仅有一个的时候，可以省略小括号
+        function fn2(a) {
+            console.log(a);
+        }
+        const fn22 = a => {
+            console.log(a);
+        }
+
+        //当函数体有且只有一句话的时候，可以省略大括号
+        function fn3(a) {
+            console.log(a);
+        }
+
+        const fn33 = a => console.log(a);
+
+        //当函数体有且只有一句话，并且是return语句的时候，可以省略大括号和return
+        function fn4(a, b) {
+            return a + b;
+        }
+        const fn44 = (a, b) => a + b;
+
+
+
+        //练习 计算数组值的累加和
+        const arr = [1, 2, 3, 4, 5];
+        const re = arr.reduce((p, c) => p + c)
+        console.log(re);
+    </script>
+</body>
+
+</html>
