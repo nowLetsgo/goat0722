@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <h2>我是老李</h2>
+        <p>大家好，我今年18岁，成年，热爱写代码</p>
+        <p>我现在在学习html</p>
+    </div>
+    <script>
+        /* 
+            模板字符串：
+                - 增强版的字符串，使用``反引号定义字符串
+                - 可以嵌套变量，可以换行，可以包含单引号和双引号
+                - 在模板字符串中，使用${}嵌套变量，并且${}中可以书写表达式
+        
+        
+        */
+        const str = `hello
+       asd
+       asdf
+       asdf
+       asdf
+       asdf
+       asdf
+       asdf
+       asdf`;
+        console.log(str);
+
+
+
+
+        //案例：
+        const oBox = document.getElementById('box')
+        const name = "xiaozhang";
+        const age = 12;
+        const hobby = "lanqiu"
+        const str2 = `
+            <h2>我是${name}</h2>
+            <p>大家好，我今年${age+1}岁，${age>=18?"成年":"未成年"}，热爱${hobby}</p>
+            <p>我现在在学习html</p>
+        `;
+        oBox.innerHTML = str2
+    </script>
+</body>
+
+</html>
