@@ -15,6 +15,16 @@
                 trim：前后去空格
                 trimEnd：末尾去空格
                 trimStart：开头去空格
+
+
+                startsWith:判断字符串的开头有没有包含某个字符串
+                endsWith:判断字符串的结尾有没有包含某个字符串
+                includes:判断字符串中有没有包含某个字符串
+
+                repeat:重复当前字符串，可以规定次数
+
+                padStart:如果字符串的长度不够规定的长度，则可以在前边补上指定的字符串
+                padEnd:如果字符串的长度不够规定的长度，则可以在后边补上指定的字符串
         
         
         
@@ -28,6 +38,22 @@
         //全部去空格
         console.log(str.split(/\s+/g).join(""));
         console.log(str.replace(/\s+/g, ''));
+
+
+
+        const str1 = "hello nodejs";
+        console.log(str1.startsWith("he"));
+        console.log(str1.endsWith("js"));
+        console.log(str1.includes("n"));
+
+
+        console.log(str1.repeat(10));
+
+
+
+        const str2 = "475197215";
+        console.log(str2.padStart(15, "#"));
+        console.log(str2.padEnd(15, "#"));
     </script>
 </body>
 
