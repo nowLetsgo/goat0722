@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            函数的rest参数：
+                - 用来收集函数剩余没有接受的实参
+                - 必须放在形参的最后一个
+        
+        */
+
+
+
+        /* function add(a, b, ...rest) {
+            console.log(a, b, rest);
+        }
+        add(1, 2, 3, 4, 5, 6, 7) */
+
+
+        //封装一个函数，求所有实参的和
+        function add(...rest) {
+            console.log(rest);
+            return rest.reduce(function (p, c) {
+                return p + c
+            })
+        }
+        console.log(add(1, 2, 3, 4, 5, 6, 7));
+    </script>
+</body>
+
+</html>

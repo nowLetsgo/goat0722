@@ -19,6 +19,21 @@
                 - 二进制：0b
                 - 八进制：0o
                 - 十六进制：0x
+
+
+            Math的新方法
+                Math.trunc()方法会将数字的小数部分去掉，只保留整数部分
+                Math.sign() 判断一个数字的正数还是负数 还是0 或者是NaN
+                Math.sqrt()平方根
+                Math.cbrt()立方根
+                Math.hypot() 求所有参数平方和的平方根
+
+
+            Number扩展
+                Number.isFinite(i) : 判断是否是有限大的数
+                Number.isNaN(i) : 判断是否是NaN(window的isNaN会转为Number再判断，而Number的isNaN直接判断)
+                Number.isInteger(i) : 判断是否是整数
+                Number.parseInt(str) : 将字符串转换为对应的数值
         
         */
         //ES3中使用Math.pow方法可以计算某个数值的n次方
@@ -32,6 +47,27 @@
 
         /*  const re = [1, 2, 3].map(parseInt);
          console.log(re); //[1,NaN,NaN] */
+
+
+        console.log(Math.trunc(3.14)); //3
+        console.log(Math.trunc(-3.14)); //-3
+        console.log(Math.sign(-3.14)); //-1
+        console.log(Math.sign(0)); //0
+        console.log(Math.sign(3)); //1
+        console.log(Math.sign(NaN)); //1
+        console.log(Math.sqrt(2));
+        console.log(Math.cbrt(8));
+        console.log(Math.hypot(3, 4)); //5
+
+
+        console.log(Number.isFinite(Infinity)); //false
+        console.log(Number.isFinite(2)); //true
+
+        console.log(Number.isNaN("abc"));
+        console.log(Number.isNaN(NaN));
+
+
+        console.log(Number.isInteger(1));
     </script>
 </body>
 

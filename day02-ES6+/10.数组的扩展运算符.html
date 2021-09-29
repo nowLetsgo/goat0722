@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            扩展运算符：
+                - ...（也被称作三点运算符），是rest参数的逆运算
+                - 用来把数组的值依次展开，用逗号隔开
+
+                - 扩展运算符还能展开字符串
+        
+        */
+        const arr = [1, 2, 3, 4, 5];
+        console.log(...arr)
+        console.log(1, 2, 3, 4, 5)
+
+
+        const str = "abcdefg";
+        console.log(...str);
+        //应用
+        // 复制数组
+        const arr2 = [1, 2, 3, 4];
+        const arr2Copy = [...arr2];
+        // 合并数组
+        const arr3 = [1, 2, 3];
+        const arr4 = [4, 5, 6];
+        const arr5 = [...arr3, ...arr4]
+        // 字符串转换为数组
+        const str2 = "abcd";
+        const strArr = [...str2];
+    </script>
+</body>
+
+</html>

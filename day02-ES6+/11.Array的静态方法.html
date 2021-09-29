@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Array.from:
+                - 把伪数组转数组
+
+            Array.of():
+                - 修复了new Array创建数组的时候，只传递一个Number值代表长度的问题
+                - Array.of创建一个新数组，值就是of方法的值（无论传递的数量和类型）
+        */
+
+        const likeArr = {
+            0: "a",
+            1: "b",
+            2: "c",
+            3: "d",
+            length: 4
+        }
+
+        console.log(Array.from(likeArr));
+
+
+
+        console.log(Array.of(10));
+        console.log(new Array(10));
+    </script>
+</body>
+
+</html>

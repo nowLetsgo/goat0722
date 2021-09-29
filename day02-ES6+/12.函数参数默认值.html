@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES3函数参数默认值
+
+        function fn(a) {
+            //ES3函数参数默认值
+            // a = a || 10;
+
+            //ES3函数参数默认值
+            a = a === undefined ? 10 : a;
+        }
+        fn()
+
+
+        /* 
+            ES6书写函数参数默认值
+                - 在写形参的时候，直接可以赋值一个默认值即可
+        
+        
+        */
+
+        function fn(a = 1, b = 1) {
+            console.log(a, b);
+        }
+        fn(3, 2)
+    </script>
+</body>
+
+</html>
