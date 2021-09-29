@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            解构赋值的引入
+        */
+        /* var obj = {};
+        var str = "user=laowang";
+        var strArr = str.split("=");
+        var key = strArr[0]
+        var value = strArr[1]
+        obj[key] = value; */
+
+
+        /* const obj = {};
+        const str = "user=laowang";
+        const [key, value] = str.split("="); //["user","laowang"]
+        obj[key] = value; */
+
+
+
+        /* 
+            数组的解构赋值：
+                - ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
+                - 解构赋值 本质就是赋值，把结构解散重构 然后赋值 其实是一种模式的匹配，关键要掌握一一对应关系。
+                - 特点：
+                    - 解构失败返回undefined
+                    - 不完全解构也可以成功
+                    - 可以为解构赋值可以设置默认值
+                    - 多维数组只要解构关系一一对应也可以进行赋值
+        
+        */
+        // 解构失败返回undefined
+        {
+            const [a, b, c] = [1, 2];
+            console.log(a, b, c);
+        }
+
+
+        //不完全解构也可以成功
+        {
+            const [a] = [1, 2, 3];
+            console.log(a);
+        }
+
+        //可以为解构赋值可以设置默认值
+        {
+            const [a, b, c = 0] = [1, 2, 3]
+            console.log(a, b, c);
+        }
+
+        //可以使用rest参数,收集剩余未使用的参数,rest参数必须是最后一个
+        {
+            const [a, b, ...rest] = [1, 2, 3, 4, 5, 6, 7]
+            console.log(rest);
+        }
+
+        // 多维数组只要解构关系一一对应也可以进行赋值
+        {
+            const arr = [1, 2, [3, 4, [5], 6]];
+            const [a, b, [c, d, [e], f]] = arr;
+            console.log(a, b, c, d, e, f);
+        }
+
+
+
+
+        //test:交换两个变量的值
+        let a = 1;
+        let b = 2;
+        [b, a] = [a, b];
+
+
+        //test
+        let [foo = hoo, hoo = 2] = [];
+        console.log(foo, hoo) //Cannot access 'hoo' before initialization
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            for循环中的i如果是let声明的，则这个i是for内的局部变量，但是是所有for中代码块的父作用域
+        
+        */
+        for (let i = 0; i < 5; i++) {
+            i = "a";
+        }
+        // console.log(i);
+
+
+        for (var i = 0; i < 5; i++) {
+            setTimeout(function () {
+                console.log(i); //
+            }, 0)
+        }
+
+
+        for (var i = 0; i < 5; i++) {
+            (function (i) {
+                setTimeout(function () {
+                    console.log(i); //
+                }, 0)
+            })(i)
+        }
+
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(function () {
+                console.log(i); //
+            }, 0)
+        }
+    </script>
+</body>
+
+</html>
