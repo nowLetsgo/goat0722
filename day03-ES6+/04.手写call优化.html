@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            手写call：
+
+        
+        */
+
+        Function.prototype.myCall = function (o, ...rest) {
+            //判断用户传递的上下文对象是null和undefined，则要改为window
+            if (o === null || o === undefined) {
+                o = window;
+            }
+            //判断用户传递的上下文对象是基本包装对象的时候，则要改为其包装对象
+            if (typeof o !== 'function' && typeof o !== "object") {
+                o = Object(o)
+            }
+
+            //给o扩展一个方法 把this代表的fn赋值过去
+            const s1 = Symbol('s1');
+            o[s1] = this;
+
+            //调用o的s1方法，这样fn就能调用，并且this指向o
+            const re = o[s1](...rest);
+
+            //删除o的s1方法
+            delete o[s1]
+
+            return re;
+        }
+
+
+        //测试
+        //封装一个函数
+        function fn(a, b) {
+            console.log("this", this)
+            console.log("a+b", a + b)
+            return "hello";
+        }
+        //使用myCall
+        var result = fn.myCall({
+            name: "laowang",
+            f: 1
+        }, 1, 2)
+        console.log(result);
+
+
+
+        //得到一个包装类型的包装对象 1.使用自己的构造函数，进行实例化  2.直接使用Object方法
+        /* var num = 1;
+        console.log(new Number(num));
+        console.log(Object(num)); */
+
+
+
+        //调用ff 并且把ff的this指向obj
+        /* function ff() {
+            console.log(this);
+        }
+        var obj = {};
+
+        //给obj扩展一个方法，把ff赋值过去
+        obj.a = ff;
+        obj.a(); //obj调用a 其实就是调用了ff  此时ff被调用了 this也是指向obj的 */
+
+
+        //传参问题
+        /* var arr = [1, 2, 3];
+
+        function ff2(a, b, c) {
+            console.log(a, b, c);
+        }
+
+        // 'ff2(' + '1,2,3' + ')'
+        // eval('ff2(1,2,3)')
+        eval('ff2(' + arr.toString() + ')')
+
+
+        // setTimeout('alert(1)', 1000) */
+    </script>
+</body>
+
+</html>

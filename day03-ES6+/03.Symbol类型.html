@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Symbol类型：
+                - 独一无二的值
+                - 只需要Symbol()即可
+                - 特点：
+                    - Symbol中传入的字符串没有任何意义，只是用来描述Symbol的
+                    - Symbol不能使用New调用
+                    - 类型转换的时候，不能转数字
+                    - 如果把Symbol当作一个对象的属性和方法的时候，一定要用一个变量来储存，否则定义的属性和方法没有办法使用
+                    - for in 不能遍历出来，可以使用Object.getOwnPropertySymbols方法来拿
+        
+        */
+
+        const s1 = Symbol('s1');
+        const s2 = Symbol('s2');
+        console.log(s1);
+        console.log(s1 === s2);
+
+
+        //给对象设置一个Symbol属性
+        var obj = {
+            name: "laowang",
+            [s1]: "hello",
+            [s2]: "world"
+        }
+
+        console.log(obj[s1]);
+        console.log(obj[s2]);
+
+        //给对象扩展一个Symbol属性（请用变量保存这个Symbol值，否则将来取这个值的时候非常麻烦）
+        obj[Symbol()] = "nodejs"
+        console.log(obj);
+        console.log(obj[Symbol()]);
+
+        //遍历对象(Symbol属性不能被遍历出来)
+        for (let key in obj) {
+            console.log(key);
+        }
+
+        // console.log(Number(Symbol())); // Cannot convert a Symbol value to a number
+
+
+
+        const re = Object.getOwnPropertySymbols(obj);
+        console.log(re);
+        console.log(obj[re[2]]);
+    </script>
+</body>
+
+</html>

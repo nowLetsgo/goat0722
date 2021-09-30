@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            js在整数运算的时候如果值超过了2的53次方，则运算不再保证精确
+        */
+        console.log(2 ** 53);
+        console.log(2 ** 53 + 1);
+        console.log(2 ** 53 + 2);
+        console.log(2 ** 53 + 3);
+        console.log(2 ** 53 + 4);
+        console.log(2 ** 53 + 5);
+        console.log(2 ** 53 + 6);
+        console.log(2 ** 53 + 7);
+
+        /* 
+            js在整数运算的时候如果超过了2的1024次方，则直接使用Infinity来表示
+        */
+        console.log(2 ** 1024);
+        console.log(2 ** 1023);
+
+
+        /* 
+            ES在ES10的时候 提供了一个新的数据类型-bigInt，可以进行大整数的运算
+            bigInt类型就是在数字后添加一个n 
+            bigInt只能和自身类型运算
+        */
+
+        const b1 = 1n;
+        console.log(b1);
+        console.log(typeof b1);
+
+        console.log(1n + 1n);
+
+        console.log(2n ** 1024n);
+        // console.log(2n ** 100024n);
+
+
+        console.log(1n == 1); //true
+        console.log(1n === 1); //false
+        console.log(Number(1n));
+    </script>
+</body>
+
+</html>
