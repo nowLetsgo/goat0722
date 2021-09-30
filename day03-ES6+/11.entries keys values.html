@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            entries :返回可以得到键值对的迭代器对象
+
+            keys ：返回可以得到key的迭代器对象
+
+            values
+        
+        */
+        const arr = ["a", "b", "c", "d"];
+
+        const re1 = arr.entries(); //re1是一个迭代器对象
+        console.log(...re1);
+
+
+        const re2 = arr.keys();
+        console.log(re2);
+        console.log(...re2);
+
+
+        const re3 = arr.values();
+        console.log(...re3);
+
+
+
+        /* 
+            Object的静态方法也有 entries keys values三个方法，可以得到对应的迭代器对象
+        
+        
+        */
+
+        const o = {
+            name: "laowang",
+            age: 18,
+            sex: "nan"
+        }
+
+        const re4 = Object.entries(o)
+        console.log(re4);
+        console.log(...re4);
+
+        const re5 = Object.keys(o)
+        console.log(re5);
+        console.log(...re5);
+
+        const re6 = Object.values(o)
+        console.log(re6);
+        console.log(...re6);
+
+        //使用for of遍历对象o
+        for (let key of Object.keys(o)) {
+            console.log(key);
+        }
+
+        for (let key of Object.values(o)) {
+            console.log(key);
+        }
+    </script>
+</body>
+
+</html>

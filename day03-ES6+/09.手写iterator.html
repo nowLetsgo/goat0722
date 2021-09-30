@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myIterator(arr) {
+            let index = 0;
+            //返回一个对象
+            return {
+                next() {
+                    if (index < arr.length) {
+                        //每次调用next方法也会返回一个对象 有value和done两个属性
+                        return {
+                            value: arr[index++],
+                            done: false
+                        }
+                    }
+
+                    return {
+                        value: undefined,
+                        done: true
+                    }
+
+
+                }
+            }
+        }
+
+
+        const arr = ["a", "b", "c", "d"]
+        const re = myIterator(arr); //使用数组的iterator方法后 会返回一个迭代器对象
+        console.log(re.next()); //迭代器对象上有一个next方法，可以依次得到数组的值
+        console.log(re.next());
+        console.log(re.next());
+        console.log(re.next());
+        console.log(re.next());
+        console.log(re.next());
+        console.log(re.next());
+    </script>
+</body>
+
+</html>

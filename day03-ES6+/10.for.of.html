@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = ["a", "b", "c", "d"];
+        const str = "abcd"
+
+        //forin遍历
+        for (let key in arr) {
+            console.log(key);
+            console.log(arr[key]);
+        }
+
+        for (let key in str) {
+            console.log(key);
+            console.log(str[key]);
+        }
+
+
+        //for of遍历
+        for (let value of arr) {
+            console.log(value);
+        }
+
+        for (let value of str) {
+            console.log(value);
+        }
+    </script>
+</body>
+
+</html>
