@@ -15,7 +15,6 @@
 
         
         */
-
         Function.prototype.myCall = function (o, ...rest) {
             //判断用户传递的上下文对象是null和undefined，则要改为window
             if (o === null || o === undefined) {

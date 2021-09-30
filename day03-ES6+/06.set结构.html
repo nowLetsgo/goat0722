@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+            Set本身是一个构造函数，用来生成 Set 数据结构。
+            Set函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化
+        
+        */
+
+        const set1 = new Set([1, 2, 3, 4, 2, 2, 3, 4, 5, 4, 3, 2]);
+        console.log(set1);
+
+        //数组去重
+        const arr = [1, 2, 3, 1, 12, 3, 6, 4, 3];
+        const re = [...new Set(arr)]
+        console.log(re);
+
+
+
+        /* 
+            set方法：
+                size 返回Set的长度
+                add 添加某个值，返回 Set 结构本身。
+                delete 删除某个值，返回一个布尔值，表示删除是否成功。
+                has 返回一个布尔值，表示该值是否为Set的成员
+                clear 清除所有成员，没有返回值。
+                forEach()：使用回调函数遍历每个成员
+            set的key和value是同一个
+        
+        */
+
+        const set2 = new Set([1, [2], 3, 4]);
+        //size
+        console.log("size", set2.size);
+        //add
+        set2.add(5);
+        console.log("add", set2);
+        //delete
+        const re3 = set2.delete(3);
+        console.log("re3", re3); //删除成功返回true
+        console.log("delete", set2);
+        //has
+        const re4 = set2.has(1);
+        console.log("re4", re4);
+        //forEach
+        set2.forEach((item, index) => {
+            console.log(item, index);
+        })
+        //clear
+        set2.clear();
+        console.log("clear", set2);
+    </script>
+</body>
+
+</html>
