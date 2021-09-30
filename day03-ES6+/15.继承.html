@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            ES3继承
+        
+        */
+
+        /*  //父类
+         function Person(name, age) {
+             this.name = name;
+             this.age = age;
+         }
+         Person.prototype.eat = function () {
+             console.log("热干面");
+         }
+
+         //子类
+         function Student(hobby, name, age) {
+             //构造函数继承
+             Person.call(this, name, age)
+             this.hobby = hobby;
+         }
+         //原型链继承
+         Student.prototype = new Person;
+         Student.prototype.constructor = Student;
+         Student.prototype.study = function () {
+             console.log("js");
+         }
+
+         const s1 = new Student("rap", "laokun", 30);
+         console.log(s1.eat); */
+
+
+
+
+        /* 
+        
+            ES6继承
+        */
+
+
+        //父类
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            //扩展当前类的原型对象方法
+            study() {
+                console.log("js");
+            }
+        }
+
+        //定义一个子类并规定继承的父类(原型对象的方法直接继承了，构造函数的内部属性也继承了)
+        class Student extends Person {
+            constructor(name, age, hobby) {
+                //ES6中继承的子类中，如果使用构造函数constructor()那么就必须使用super()方法初始化，这样下面才可以调用this关键字。super()只能用在子类的构造函数之中，用在其他地方就会报错,这是因为子类自己的this对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，加上子类自己的实例属性和方法。
+                super(name, age);
+                this.hobby = hobby;
+            }
+
+            do() {
+                console.log("do");
+            }
+        }
+
+        const s1 = new Student("laowang", 18, "rap");
+        console.log(s1);
+        console.log(s1.study);
+    </script>
+</body>
+
+</html>
