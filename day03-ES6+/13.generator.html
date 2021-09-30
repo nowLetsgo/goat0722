@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Generator函数:
+                - Generator 函数是 ES6 提供的一种异步编程解决方案，内部封装了很多的状态，被称作状态机 生成器
+
+                - 执行Generator会返回一个迭代器对象（iterator），使用iterator来遍历出Generator内部的状态
+
+                - 形式上，Generator 函数是一个普通函数，但是有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）
+        
+        */
+
+        /* function* fn() {
+            yield alert(1);
+            yield alert(2);
+            yield alert(3);
+            yield alert(4);
+            yield alert(5);
+        }
+
+        const re = fn();
+        console.log(re);
+
+        document.onclick = function () {
+            re.next();
+        } */
+
+
+
+        // 先读取A数据，再读取B数据，再读取C数据
+        function* getData() {
+            yield setTimeout(() => {
+                console.log("A数据读取成功");
+                re.next()
+            }, 1000);
+
+            yield setTimeout(() => {
+                console.log("B数据读取成功");
+                re.next()
+            }, 1500);
+
+            yield setTimeout(() => {
+                console.log("C数据读取成功");
+                re.next()
+            }, 1000);
+            
+            yield console.log("所有数据读取完毕")
+        }
+
+        const re = getData();
+        re.next();
+    </script>
+</body>
+
+</html>

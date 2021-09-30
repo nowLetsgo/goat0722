@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            ES3 构造函数+原型
+        */
+
+        /* function Person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        Person.prototype.study = function () {
+            console.log("js");
+        } */
+
+
+
+        /* 
+            ES6 class语法
+        
+        */
+        class Person {
+            //constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加。
+            constructor(name, age, sex) {
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+            }
+
+            //扩展当前类的原型对象方法
+            study() {
+                console.log("js");
+            }
+
+            //给类扩展静态方法
+            static do() {
+                console.log("do");
+            }
+        }
+
+        //也可以直接给构造函数扩展原型对象上的方法
+        Person.prototype.say = function () {
+            console.log("hello");
+        }
+
+
+        const p1 = new Person("laowang", 18, "nan");
+        console.log(p1);
+        console.log(p1.study);
+        console.log(Person.do);
+    </script>
+</body>
+
+</html>

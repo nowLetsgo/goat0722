@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            先读取A数据，再读取B数据，再读取C数据
+
+            回调地狱写法
+        
+        */
+        console.log("正在读取A。。。");
+        setTimeout(() => {
+            console.log("A读取成功");
+            console.log("正在读取B");
+            setTimeout(() => {
+                console.log("B读取成功");
+                console.log("正在读取C");
+                setTimeout(() => {
+                    console.log("C读取成功");
+                }, 1500);
+            }, 1500);
+        }, 1000)
+    </script>
+</body>
+
+</html>
