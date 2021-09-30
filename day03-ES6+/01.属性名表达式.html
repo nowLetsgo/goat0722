@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            属性名表达式：
+                - 对象的key一定是一个字符串，如果不是，也会强制调用toString转为字符串
+                - 如果对象的key是被变量保存，则初始化对象的之后，可以用中括号扩住，可以解析变量
+        
+        */
+        const key1 = "name";
+        const key2 = "age";
+
+        const obj = {
+            [key1]: "laowang",
+            [key2]: 18
+        }
+
+
+        obj[key1] = "laowang"
+    </script>
+</body>
+
+</html>

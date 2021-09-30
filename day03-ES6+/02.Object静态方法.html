@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Object.is():
+                - 判断两个对象是否相等，类似于===，修复了NaN不等于NaN的问题
+
+            Object.assign():
+                - 合并多个对象,把参数向第一个参数里合并，并返回第一个参数对象的引用
+        */
+
+        console.log(NaN === NaN); //false
+        console.log(Object.is(NaN, NaN)); //true
+        console.log(Object.is([], [])); //false
+
+
+
+        const o1 = {
+            name: "laowang"
+        }
+        const o2 = {
+            sex: "nan"
+        }
+        const o3 = {
+            age: 18
+        }
+
+
+        //合并对象
+        const re = Object.assign({}, o1, o2, o3);
+        console.log(re);
+        console.log(re === o1);
+    </script>
+</body>
+
+</html>
