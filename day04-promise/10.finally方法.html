@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            finally方法：
+                - 无论成功和失败都会进入finally中执行，当你书写的promise对象无论成功还是失败，都想要执行一段代码的时候，finally就是最佳解决方案
+                - finally的回调函数不接受参数
+
+                - finally的返回值
+                    - 具体如图
+                    - 总结：
+                        - 当finally中的回调函数返回的是失败的promise对象的时候，则finally返回失败状态的promis对象，值为回调函数返回promise对象的值
+                        - 当finally的回调函数中出现报错，则finally直接返回失败的promise对象，值为错误信息
+                        - 其他情况一律认为类似穿透
+
+        */
+
+
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开启请求a数据");
+            try {
+                throw new Error("反正你错了。。。")
+
+                setTimeout(() => {
+                    console.log("a数据请求成功");
+                    //假设请求的对象是data
+                    const data = {
+                        name: "laoli"
+                    }
+                    //返回成功状态，并把data传递出去
+                    resolve(data);
+                }, 1000)
+
+            } catch (e) {
+                // console.log("err", e);
+                //返回失败，并传递错误信息出去
+                reject(e);
+            }
+        })
+
+
+        const p2 = p1.finally(() => {
+            throw new Error("finally报错了")
+            // return 1
+            return new Promise((resolve, reject) => {
+                reject(1)
+            })
+        })
+        console.log("p2", p2);
+
+
+
+
+
+        //无论成功和失败 都会进入finally中，finally的回调函数不接受参数
+        /* p1.finally((value) => {
+            console.log("finally");
+            console.log(value); //undefined
+        }) */
+
+
+
+
+        //穿透问题
+        // console.log("finally的穿透性", p1.finally(1));
+    </script>
+</body>
+
+</html>

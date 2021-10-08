@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开启请求a数据");
+            try {
+                throw new Error("反正你错了。。。")
+
+                setTimeout(() => {
+                    console.log("a数据请求成功");
+                    //假设请求的对象是data
+                    const data = {
+                        name: "laoli"
+                    }
+                    //返回成功状态，并把data传递出去
+                    resolve(data);
+                }, 1000)
+
+            } catch (e) {
+                // console.log("err", e);
+                //返回失败，并传递错误信息出去
+                reject(e);
+            }
+        })
+
+        /* 
+            then和catch的回调函数的参数就是调用then或者catch的promise对象值
+        
+        
+        */
+        p1.then(value => {
+            console.log("value", value);
+        }, reason => {
+            console.log("reason", reason);
+        })
+    </script>
+</body>
+
+</html>

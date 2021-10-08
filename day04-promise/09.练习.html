@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* Promise.resolve(1)
+            .then(2)
+            .then(Promise.resolve(3))
+            .then(console.log) //1 */
+
+
+        /* Promise.resolve("foo")
+            .then(Promise.resolve("hoo"))
+            .then((value) => {
+                console.log(value); //foo
+            }) */
+
+
+        /* Promise.resolve(1)
+            .then(() => {
+                return 2
+            })
+            .then(Promise.resolve(3))
+            .then(console.log) //2 */
+
+
+        /*  Promise.resolve(1)
+             .then(() => {
+                 return 2
+             })
+             .then(() => {
+                 return Promise.resolve(3)
+             })
+             .then(console.log) //3 */
+
+
+
+        /*  new Promise((resolve, reject) => {
+                 reject(1)
+             })
+             .then(value => {
+                 console.log('成功', value);
+             }, reason => {
+                 console.log('失败', reason); //失败 1
+             })
+             .then(value => {
+                 console.log('成功', value); //成功 undefined
+             }, reason => {
+                 console.log('失败', reason);
+             })
+             .catch(reason => console.log('失败', reason)) //不执行 */
+
+
+        /* new Promise((resolve, reject) => {
+                reject(1)
+            })
+            .then(value => {
+                console.log('成功', value);
+            })
+            .then(value => {
+                console.log('成功', value);
+            })
+            .catch(reason => console.log('失败', reason)) //失败 1 */
+
+
+
+        /*  new Promise((resolve, reject) => {
+                 reject(1) //失败状态
+             })
+             .then(value => {
+                 console.log('成功', value);
+             })
+             .then(value => {
+                 console.log('成功', value);
+             }, reason => {
+                 console.log('失败hhhhh', reason); //失败 1
+             })
+             .catch(reason => console.log('失败', reason)) */
+
+
+
+        /* const promise = new Promise((resolve, reject) => {
+            console.log(1)
+            resolve()
+            console.log(2)
+        })
+        promise.then(() => {
+            console.log(3)
+        })
+        console.log(4) */
+
+
+
+        /* const promise = new Promise((resolve, reject) => {
+            resolve('1')
+            reject('error')
+            resolve('2')
+        })
+
+        promise
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err)
+            }) */
+
+
+
+        /*  Promise.resolve(1)
+             .then((data) => {
+                 console.log(data) //1
+                 return 2
+             })
+             .catch((err) => {
+                 return 3
+             })
+             .then((data) => {
+                 console.log(data) //2
+             }) */
+    </script>
+</body>
+
+</html>
