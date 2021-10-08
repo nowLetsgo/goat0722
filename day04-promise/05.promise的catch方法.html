@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise的原型对象方法：then、catch、finally
+
+            catch方法：
+                - 主要是用来处理失败的promise对象
+
+
+            catch的返回值：
+                - 失败的promise对象调用catch方法
+                    - 当catch中没有书写回调函数的时候，会发生值穿透，直接返回失败的，值为调用catch的失败的promise对象的值
+                    - 当catch中书写了回调函数，则catch的返回值规则和then一样（默认成功，catch中报错、返回失败的promise对象这两种情况才会返回失败）
+                   
+
+                -  成功的promise对象调用catch方法
+                    - catch直接返回一个成功的promise对象，并且值是调用catch的那个成功的promise对象的值
+        */
+
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开启请求a数据");
+            try {
+                // throw new Error("反正你错了。。。")
+
+                setTimeout(() => {
+                    console.log("a数据请求成功");
+                    //假设请求的对象是data
+                    const data = {
+                        name: "laoli"
+                    }
+                    //返回成功状态，并把data传递出去
+                    resolve(data);
+                }, 1000)
+
+            } catch (e) {
+                console.log("err", e);
+                //返回失败，并传递错误信息出去
+                reject(e);
+            }
+        })
+
+        console.log("p1", p1);
+
+
+        //成功的promise调用then：当then中传递的是一个回调函数
+        /* const p2 = p1.catch(() => {
+            throw new Error("error:catch中错了")
+            return new Promise((resolve, reject) => {
+                reject("hello");
+            })
+        });
+
+        console.log("p2", p2); */
+
+
+        //成功的promise调用then：当then中传递的是一个值
+        const p2 = p1.catch(() => {
+            throw new Error();
+        });
+        console.log("p2", p2);
+    </script>
+</body>
+
+</html>
