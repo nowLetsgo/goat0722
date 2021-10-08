@@ -20,11 +20,17 @@
                 - Promise是解决回调地狱的问题，也就是解决异步的问题，但是Promise自身并不是异步的
                 - Promise实例化时传递的回调函数，接受两个参数，一个是resolve，一个是reject
 
-            
-        
-        
-        */
 
+            Promise的实例化对象:
+                - PromiseState属性：当前Promise实例化对象的状态
+                - PromiseResult属性：当前Promise实例化对象的值
+
+            Promise实例化对象的状态：
+                - pending:正在执行异步代码，默认就是pending状态
+                - fulfilled:当前Promise对象内的异步代码执行成功（在Promise的回调函数中调用了resolve方法）
+                - rejected:当前Promise对象内的异步代码执行失败（在promise的回调函数中调用了reject方法）
+                - 注意:promise对象的状态只能从pending转为其他状态
+        */
 
         //promise的基本使用
         const p1 = new Promise((resolve, reject) => {
@@ -35,8 +41,8 @@
             setTimeout(() => {
                 console.log("我是计时器");
                 //当异步完成以后，只需要调用resolve函数或者reject函数，就可以改变实例化promise对象的状态
-                // resolve();
-                // reject();
+                resolve();
+                reject();
             }, 2000)
         })
 

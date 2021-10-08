@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise的原型对象方法：then、catch、finally
+
+            then方法：
+                - then方法是异步的，是实例化的promise对象调用，当实例化的promise对象不再是pending状态的时候，会调用then方法
+                - 因为then是解决异步嵌套的核心流程，所以then方法一定返回的是promise对象
+
+
+            then的返回值：
+        */
+
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开启请求a数据");
+            try {
+                // throw new Error("反正你错了。。。")
+
+                setTimeout(() => {
+                    console.log("a数据请求成功");
+                    //假设请求的对象是data
+                    const data = {
+                        name: "laoli"
+                    }
+                    //返回成功状态，并把data传递出去
+                    resolve(data);
+                }, 2000)
+
+            } catch (e) {
+                console.log("err", e);
+                //返回失败，并传递错误信息出去
+                reject(e);
+            }
+        })
+
+        console.log("p1", p1);
+
+
+        p1.then().then().then()
+    </script>
+</body>
+
+</html>
