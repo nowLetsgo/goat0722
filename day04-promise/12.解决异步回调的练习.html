@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            先请求A数据 再请求B数据 再请求C数据
+        */
+
+        new Promise((resolve, reject) => {
+                try {
+                    console.log("开始请求A数据....");
+                    setTimeout(() => {
+                        console.log("A数据请求成功");
+                        //模拟的A数据
+                        const dataA = {
+                            name: "laowang"
+                        }
+                        resolve(dataA)
+                    }, 2000)
+                } catch (e) {
+                    reject(e)
+                }
+            })
+
+            .then(data => {
+                return new Promise((resolve, reject) => {
+                    try {
+                        console.log("开始请求B数据....");
+                        setTimeout(() => {
+                            console.log("B数据请求成功");
+                            //模拟的A数据
+                            const dataB = {
+                                age: "18"
+                            }
+                            //把dataA 和dataB 合并后返回出去
+                            resolve(Object.assign({}, data, dataB))
+                        }, 1500)
+                    } catch (e) {
+                        reject(e)
+                    }
+                })
+            })
+            .then(data => {
+                return new Promise((resolve, reject) => {
+                    try {
+                        console.log("开始请求C数据....");
+                        setTimeout(() => {
+                            console.log("C数据请求成功");
+                            //模拟的A数据
+                            const dataC = {
+                                sex: "男"
+                            }
+                            //把dataA 和dataB和dataC 合并后返回出去
+                            resolve(Object.assign({}, data, dataC))
+                        }, 1000)
+                    } catch (e) {
+                        reject(e)
+                    }
+                })
+            })
+            .then(value => {
+                console.log("三次请求最终得到的数据是", value);
+            })
+    </script>
+</body>
+
+</html>
