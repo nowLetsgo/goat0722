@@ -19,12 +19,22 @@
 
 
             then的返回值：
+                - 成功的promise对象调用then方法
+                    - then中一般接受一个回调函数作为参数，回调函数内部用来处理下一步操作
+                        - 默认then返回的是一个成功的promise对象,promise对象的值就是当前回调函数的返回值
+                        - 当then中返回的是一个promise对象的时候，then返回的promise对象的状态和值就是回调函数返回的promise对象的状态和值
+                        - 当then的回调函数内部出现报错并且没有异常处理，则直接then返回失败的promise对象，值为这个错误
+                    - then中值传递一个值，会直接发生值穿透，then返回成功状态的promise对象，值是调用then的namepromise对象的值
+                    
+
+                -  失败的promise对象调用then方法
+                    - then直接返回一个失败的promise对象，并且值是调用then的那个失败的promise对象的值
         */
 
         const p1 = new Promise((resolve, reject) => {
             console.log("开启请求a数据");
             try {
-                // throw new Error("反正你错了。。。")
+                throw new Error("反正你错了。。。")
 
                 setTimeout(() => {
                     console.log("a数据请求成功");
@@ -34,7 +44,7 @@
                     }
                     //返回成功状态，并把data传递出去
                     resolve(data);
-                }, 2000)
+                }, 1000)
 
             } catch (e) {
                 console.log("err", e);
@@ -46,7 +56,52 @@
         console.log("p1", p1);
 
 
-        p1.then().then().then()
+        //成功的promise调用then：当then中传递的是一个回调函数
+        /* const p2 = p1.then(() => {
+            console.log(a);
+            const innerP = new Promise((resolve, reject) => {
+                console.log("开始请求B");
+                try {
+                    throw new Error("B错误");
+                    setTimeout(() => {
+                        console.log("B成功");
+                        resolve("B数据")
+                    }, 1000)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+            return innerP;
+        });
+
+        console.log("p2", p2); */
+
+
+        //成功的promise调用then：当then中传递的是一个值
+        // const p2 = p1.then(null);
+        // console.log("p2", p2);
+
+
+
+        //失败的promise调用then：当then中传递的是一个回调函数
+        const p2 = p1.then(() => {
+            console.log("失败的进来");
+            const innerP = new Promise((resolve, reject) => {
+                console.log("开始请求B");
+                try {
+                    throw new Error("B错误");
+                    setTimeout(() => {
+                        console.log("B成功");
+                        resolve("B数据")
+                    }, 1000)
+                } catch (e) {
+                    reject(e);
+                }
+            })
+            return innerP;
+        });
+
+        console.log("p2", p2);
     </script>
 </body>
 
