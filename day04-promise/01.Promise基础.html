@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            什么是Promise():
+                - 回调函数嵌套回调函数被称作回调地狱，代码层层嵌套，环环相扣，很明显，逻辑稍微复杂一些，这样的程序就会变得难以维护。代码臃肿，可读性差，耦合度过高
+                - ES2015的标准里，Promise的标准化，一定程度上解决了JavaScript的流程操作问题。Promise对象是一个异步编程的解决方案，可以将异步操作以同步的流程表达出来, 避免了层层嵌套的回调函数(俗称'回调地狱')
+
+            Promise的使用
+                - Promise是一个构造函数，接受一个参数是一个回调函数
+                - Promise是解决回调地狱的问题，也就是解决异步的问题，但是Promise自身并不是异步的
+                - Promise实例化时传递的回调函数，接受两个参数，一个是resolve，一个是reject
+
+            
+        
+        
+        */
+
+
+        //promise的基本使用
+        const p1 = new Promise((resolve, reject) => {
+            //Promise内部是同步的，Promise只是用来处理异步的
+            console.log("promise内部");
+
+            //Promise是用来处理异步的，所以把异步代码写在Promise中
+            setTimeout(() => {
+                console.log("我是计时器");
+                //当异步完成以后，只需要调用resolve函数或者reject函数，就可以改变实例化promise对象的状态
+                // resolve();
+                // reject();
+            }, 2000)
+        })
+
+
+        console.log("p1", p1);
+
+        console.log("底部");
+    </script>
+</body>
+
+</html>
