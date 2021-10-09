@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            同时请求ABC数据，当全部请求完成后，处理这些数据
+        
+        */
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开始请求a数据。。。");
+            try {
+                // throw new Error("error:A报错")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve("A")
+                }, 2000)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            console.log("开始请求b数据。。。");
+            try {
+                // throw new Error("error:B报错")
+                setTimeout(() => {
+                    console.log("B数据请求成功");
+                    resolve("B")
+                }, 1000)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+        const p3 = new Promise((resolve, reject) => {
+            console.log("开始请求c数据。。。");
+            try {
+                // throw new Error("error:C报错")
+                setTimeout(() => {
+                    console.log("C数据请求成功");
+                    resolve("C")
+                }, 1500)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+
+        /* 
+            Promise.all():
+                - 参数一般是一个数组，里边放入一个或多个promise对象
+                - all的返回值是一个promise对象
+                    - 默认是pending状态
+                    - 当all中所有的promise对象全部成功，则all返回fulfilled状态，并且值是所有promise对象值组成的数组
+                    - 当all中promise对象有一个返回失败状态，则all直接返回失败状态，并且值为失败的值
+        
+        */
+
+        const result = Promise.all([p1, p2, p3]);
+        console.log(result);
+
+
+        result.then(value => {
+            console.log("最终请求的所有的数据组合是", value);
+        }).catch(reason => {
+            console.log("有任务报错了，报错内容是", reason);
+        })
+    </script>
+</body>
+
+</html>

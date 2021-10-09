@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise.allSettled()
+                当您有多个彼此不依赖的异步任务成功完成时，或者您总是想知道每个promise的结果时，通常使用它。
+                只会返回成功的promise对象，值是所有监听promise对象的状态和值 组成的数组
+        
+        */
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开始请求a数据。。。");
+            try {
+                throw new Error("error:A报错")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve("A")
+                }, 2000)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            console.log("开始请求b数据。。。");
+            try {
+                throw new Error("error:B报错")
+                setTimeout(() => {
+                    console.log("B数据请求成功");
+                    resolve("B")
+                }, 1000)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+        const p3 = new Promise((resolve, reject) => {
+            console.log("开始请求c数据。。。");
+            try {
+                throw new Error("error:C报错")
+                setTimeout(() => {
+                    console.log("C数据请求成功");
+                    resolve("C")
+                }, 1500)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+
+
+        const result = Promise.allSettled([p1, p2, p3]);
+        console.log(result);
+    </script>
+</body>
+
+</html>
