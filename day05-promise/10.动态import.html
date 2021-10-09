@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <script src="./01.js"></script> -->
+    <script>
+        /* 
+            动态import：
+                在需要引入某个js文件的时候，可以使用import动态引用
+                import返回promise对象
+        
+        */
+
+        const result = import("./01.js");
+        console.log(result);
+
+        result.then(value => {
+            console.log("success");
+        }).catch(reason => {
+            console.log(reason);
+        })
+    </script>
+</body>
+
+</html>
