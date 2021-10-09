@@ -4,5 +4,10 @@ const data = {
     name: "laowang"
 }
 
-console.log(a + 1);
+function fn() {
+    console.log(1);
+}
+console.log(a + 4);
 console.log(data);
+
+fn()
