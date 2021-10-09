@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            async和await
+                - async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成
+                - async函数(源自ES2017 - ES8),真正意义上去解决异步回调的问题，同步流程表达异步操作,是 Generator的语法糖
+                - await只能等待promise对象
+        */
+
+        async function fn() {
+            console.log("async函数");
+            await new Promise((resolve, reject) => {
+                console.log("deng1");
+                setTimeout(() => {
+                    resolve()
+                }, 2000)
+            })
+            console.log(2);
+
+        }
+
+        const re = fn();
+        console.log(re);
+
+        console.log("end");
+    </script>
+</body>
+
+</html>

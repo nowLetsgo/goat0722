@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            先请求A数据 再请求B数据 再请求C数据
+        
+        */
+
+
+        async function getData() {
+            const dataA = await new Promise((resolve, reject) => {
+                console.log("开始请求A。。。");
+                try {
+                    // throw new Error("error:A 错误");
+                    setTimeout(() => {
+                        console.log("A成功");
+                        const data = {
+                            name: "laowang"
+                        }
+                        resolve(data)
+                    }, 2000);
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+            const dataB = await new Promise((resolve, reject) => {
+                console.log("开始请求B。。。");
+                try {
+                    // throw new Error("error:B 错误");
+                    setTimeout(() => {
+                        console.log("B成功");
+                        const data = {
+                            sex: "nan"
+                        }
+                        resolve(Object.assign({}, dataA, data))
+                    }, 1000);
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+            const dataC = await new Promise((resolve, reject) => {
+                console.log("开始请求C。。。");
+                try {
+                    // throw new Error("error:C 错误");
+                    setTimeout(() => {
+                        console.log("C成功");
+                        const data = {
+                            age: "18"
+                        }
+                        resolve(Object.assign({}, dataB, data))
+                    }, 1500);
+                } catch (e) {
+                    reject(e);
+                }
+            })
+
+            return dataC;
+        }
+
+
+        const resulte = getData();
+        console.log("resulte", resulte);
+
+        resulte.then(value => {
+            console.log("最终数据的值是", value);
+        }).catch(reason => {
+            console.log("出现错误，错误信息是", reason);
+        })
+    </script>
+</body>
+
+</html>

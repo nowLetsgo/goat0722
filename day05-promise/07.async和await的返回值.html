@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            async：
+                - 默认返回pending状态的promise对象
+                - 当函数执行完成后，返回一个成功promise对象,值是函数return的值
+                - 当async函数内部一旦报错，则直接退出async函数，并返回失败的promise对象，值为错误信息
+                - 当async函数内部等待的promise对象出现失败，则立即退出函数，asycn函数并返回失败的promise对象，值为错误的值
+
+
+            await：
+                - 当await等待的promise对象成功，则await的返回值就是这个成功状态的promise对象的值
+        */
+
+
+        async function getData() {
+            console.log("async函数"); //同步的代码，函数调用直接执行
+            // throw new Error("错误")
+
+            const re = await new Promise((resolve, reject) => {
+                console.log("开始请求A");
+                try {
+                    // throw new Error("A失败")
+                    setTimeout(() => {
+                        console.log("A成功");
+                        resolve("a数据")
+                    }, 2000);
+                } catch (e) {
+                    reject(e)
+                }
+            });
+
+            console.log("re", re);
+
+            return 1
+        }
+        const resulte = getData();
+        console.log("resulte", resulte);
+    </script>
+</body>
+
+</html>

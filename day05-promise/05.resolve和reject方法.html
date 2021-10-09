@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise.resolve(value):
+                - 快速得到一个成功状态的promise对象，值为value
+                - 如果value是一个promise对象，则resolve方法的返回的promise的状态和值跟随内部value的状态和值
+
+
+            Promise.reject(value):
+                - 快速得到一个失败状态的promise对象，值为value
+                - 不管value是什么对象，都是这个失败的promise对象的值
+        
+        */
+
+        /* const p1 = Promise.resolve(1);
+        console.log(p1);
+
+        const p11 = Promise.resolve(new Promise((resolve, reject) => {
+            reject("111")
+        }));
+        console.log("p11", p11); */
+
+
+        /* const p2 = Promise.reject(2);
+        console.log(p2); */
+
+        const p22 = Promise.reject(new Promise((resolve, reject) => {
+            reject("222")
+        }));
+        console.log('p22', p22);
+    </script>
+</body>
+
+</html>

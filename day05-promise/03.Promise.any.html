@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            Promise.any()
+                - 如果所有的全部失败，则返回失败的promise对象，错误值是AggregateError: All promises were rejected
+                - 如果有一个成功的，则any就返回第一个成功状态的promise对象，值是成功的那个对象的值
+        
+        */
+        const p1 = new Promise((resolve, reject) => {
+            console.log("开始请求a数据。。。");
+            try {
+                // throw new Error("error:A报错")
+                setTimeout(() => {
+                    console.log("A数据请求成功");
+                    resolve("A")
+                }, 2000)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            console.log("开始请求b数据。。。");
+            try {
+                // throw new Error("error:B报错")
+                setTimeout(() => {
+                    console.log("B数据请求成功");
+                    resolve("B")
+                }, 1000)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+        const p3 = new Promise((resolve, reject) => {
+            console.log("开始请求c数据。。。");
+            try {
+                // throw new Error("error:C报错")
+                setTimeout(() => {
+                    console.log("C数据请求成功");
+                    resolve("C")
+                }, 1500)
+            } catch (e) {
+                reject(e)
+            }
+        })
+
+
+
+        const result = Promise.any([p1, p2, p3]);
+        console.log(result);
+    </script>
+</body>
+
+</html>
