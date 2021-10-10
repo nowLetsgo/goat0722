@@ -263,7 +263,7 @@ setTimeout(function () {//定2
 
 
 //test12
-console.log(1); //
+/* console.log(1); //
 new Promise((res, rej) => {
     console.log(2); //
     res();
@@ -319,4 +319,16 @@ setTimeout(() => {//定3
         console.log(16);
     }, 0);
     console.log(17); //
-}, 0);
+}, 0); */
+
+
+/* async function async1() {
+    console.log('1');
+    await setTimeout(() => {
+        console.log(3);
+    });
+    console.log('2')
+}
+async1()
+
+console.log(4); */
