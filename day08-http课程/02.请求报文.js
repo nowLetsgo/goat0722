@@ -32,5 +32,34 @@
         //4.报文第四部分：报文体
 
 
+*/
+
+
+/* 
+    POST请求报文
+        //请求报文首行
+        POST http://127.0.0.1:3000/ HTTP/1.1
+
+        //请求报文头
+        Host: 127.0.0.1:3000
+        Connection: keep-alive
+        //请求报文体的长度
+        Content-Length: 24
+        Cache-Control: max-age=0
+        sec-ch-ua: "Chromium";v="94", "Google Chrome";v="94", ";Not A Brand";v="99"
+        sec-ch-ua-mobile: ?0
+        sec-ch-ua-platform: "Windows"
+        Upgrade-Insecure-Requests: 1
+        Origin: null
+        //报文体的类型
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        Accept-Encoding: gzip, deflate, br
+        Accept-Language: zh-CN,zh;q=0.9
+        //请求报文空行
+
+        //请求报文体
+        user=laowang&pass=123456
 
 */
