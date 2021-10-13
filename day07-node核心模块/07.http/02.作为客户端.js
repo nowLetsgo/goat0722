@@ -1,7 +1,7 @@
 const http = require("http");
 
 //设置请求地址：
-const url = "http://192.168.19.35:3000"
+const url = "http://127.0.0.1:3000"
 //设置请求
 const request = http.request(url, response => {
     //回调函数的参数response 就是响应的对象

@@ -8,18 +8,21 @@ const server = http.createServer((request, response) => {
     console.log("请求啦~", count)
 
     //在响应头中 返回响应格式Content-Type
-    response.setHeader("Content-Type", "text/plain;charset=utf-8")
+    response.setHeader("Content-Type", "application/json;charset=utf-8")
 
     //返回响应
-    response.end("你是第" + count + "个");
+    response.end(`{
+        name: "laowang"
+    }`);
+    // response.end("你是第" + count + "个");
 });
 
 //启动服务 并设置端口号和主机地址(localhost\127.0.0.1\192.168.19.35 )
-server.listen(3000, "192.168.19.35", (err) => {
+server.listen(3000, "127.0.0.1", (err) => {
     if (err) {
         console.log("err", err);
         return;
     }
 
-    console.log("服务器启动成功");
+    console.log("服务器启动成功 http://127.0.0.1:3000");
 })
