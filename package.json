@@ -1,0 +1,19 @@
+{
+  "name": "goat0722",
+  "version": "1.0.0",
+  "description": "- `https://gitee.com/nowletsgo/goat0722.git` gitee地址\r - `https://github.com/nowLetsgo/goat0722.git` github地址",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:nowletsgo/goat0722.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.0.10"
+  }
+}
