@@ -60,14 +60,25 @@
             /* 
                 open方法参数：
                     - 参数1：请求方式
-                    - 参数2：接口地址(get请求的数据在地址后拼接)(一般会在查询字符串中拼接一个时间戳，防止浏览器读取缓存)
+                    - 参数2：接口地址(POST请求数据需要在send方法中传递，POST请求不读取缓存)
                     - 参数3：是否异步
             
             */
-            xhr.open("GET", "/login?user=" + oUser.value + "&pass=" + oPass.value + "&_t=" + Date.now(), true);
+            xhr.open("POST", "/login", true);
 
             //3.发送数据
-            xhr.send();
+
+            //格式1：form表单格式
+            //发送之前要设置请求头的Content-Type类型为对应的格式
+            /* xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
+            xhr.send(`user=${oUser.value}&pass=${oPass.value}`); */
+
+            //格式2：json字符串格式
+            xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8")
+            xhr.send(JSON.stringify({
+                user: oUser.value,
+                pass: oPass.value
+            }));
 
             //4.绑定onreadystatechange事件
             //当客户端开始请求数据的时候，会有一个叫readystate的状态码一直在发生变化，表示客户端的请求状态
