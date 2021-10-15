@@ -15,10 +15,16 @@ app.get("/", (req, res) => {
     //获取get请求的请求查询字符串(已经转为对象呈现)
     console.log("req.query", req.query)
 
+    //设置响应头
+    res.set("hello", "world")
+
+    //设置状态码
+    res.status(404)
 
     //响应内容
     //send：普通响应，自动设置好响应头的Content-type
     res.send("我是根目录的响应")
+
 
 })
 
@@ -45,6 +51,19 @@ app.get("/bang", (req, res) => {
 app.get("/jd", (req, res) => {
     res.redirect("http://www.jd.com")
 })
+
+
+app.get("/user/laoli", (req, res) => {
+    res.send("老李")
+})
+
+app.get("/shop/:id", (req, res) => {
+    console.log("shop");
+    //获取请求时id的值
+    console.log("req.params", req.params);
+    res.send("你是第" + req.params.id + "号商铺")
+})
+
 //4.启动服务，并设置端口号
 app.listen(8888, err => {
     if (err) {
