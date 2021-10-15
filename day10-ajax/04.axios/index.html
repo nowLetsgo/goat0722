@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <label>
+            用户名：
+            <input type="text" name="user" id="user">
+        </label>
+
+        <br>
+
+        <label>
+            密码
+            <input type="password" name="pass" id="pass">
+        </label>
+
+        <br>
+
+        <button id="btn">提交</button>
+    </form>
+
+    <script>
+        $(function () {
+            $("#form").submit(function () {
+
+                //axios请求
+                const re = axios({
+                    //请求地址
+                    // url: `/login?user=${$("#user").val()}&pass=${$("#pass").val()}`,
+                    url: `/login`,
+                    //`params` 是即将与请求一起发送的 URL 参数
+                    params: {
+                        user: $("#user").val(),
+                        pass: $("#pass").val()
+                    },
+                    //请求方法
+                    method: "get",
+                })
+
+                console.log(re);
+                /* 
+                    axios返回的是一个promise对象，值是响应的配置对象
+                    promise的值是一个对象：
+                        - config:请求头
+                        - data:响应的数据
+                        - headers:响应头
+                        - request:请求的xhr对象
+                        - status:请求状态码
+                        - statusText:请求状态
+                
+                */
+
+                re.then(value => {
+                    console.log(value.data);
+                })
+
+
+                //阻止默认事件
+                return false
+            })
+        })
+    </script>
+</body>
+
+</html>
