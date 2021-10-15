@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <label>
+            用户名：
+            <input type="text" name="user" id="user">
+        </label>
+
+        <br>
+
+        <label>
+            密码
+            <input type="password" name="pass" id="pass">
+        </label>
+
+        <br>
+
+        <button id="btn">提交</button>
+    </form>
+
+    <script>
+        const oUser = document.getElementById('user')
+        const oForm = document.getElementById('form')
+        const oPass = document.getElementById('pass')
+        const oBtn = document.getElementById('btn')
+
+        /* 
+            给form表单绑定事件方式两种
+                oBtn.onclick  = fn;
+                oForm.onsubmit = fn;
+        */
+
+        oForm.onsubmit = function () {
+            //1.所有ajax的方法都在XMLHttpRequest对象上，所以首先实例化XMLHttpRequest
+            const xhr = new XMLHttpRequest();
+
+            //2.打开路径
+            /* 
+                open方法参数：
+                    - 参数1：请求方式
+                    - 参数2：接口地址(get请求的数据在地址后拼接)(一般会在查询字符串中拼接一个时间戳，防止浏览器读取缓存)
+                    - 参数3：是否异步
+            
+            */
+            xhr.open("DELETE", "/login?user=" + oUser.value + "&pass=" + oPass.value + "&_t=" + Date.now(), true);
+
+            //3.发送数据
+            xhr.send();
+
+            //4.绑定onreadystatechange事件
+            //当客户端开始请求数据的时候，会有一个叫readystate的状态码一直在发生变化，表示客户端的请求状态
+            //readyStatue状态码：0:初始化   1:已经open     2:已经send     3:已经开始接受数据了    4:接受完成
+            xhr.onreadystatechange = function () {
+                //请求状态码
+                console.log(xhr.readyState);
+                //响应状态码
+                console.log(xhr.status);
+                //当请求状态码值为4 且 响应状态为2XX的时候，说明整个请求并接受响应成功
+                if (xhr.status < 300 && xhr.status > 199 && xhr.readyState === 4) {
+                    /* 
+                        xhr.responseText:当响应成功后，得到文本数据
+                        xhr.responseXML:当响应成功后，得到的XML数据
+                    */
+                    console.log(xhr.responseText);
+                    //ajax请求得到的一定是一个字符串，把json字符串转为json对象 然后使用
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+            //使用ajax提交 阻止表单提交
+            return false;
+        }
+    </script>
+</body>
+
+</html>

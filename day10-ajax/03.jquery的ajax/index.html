@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <label>
+            用户名：
+            <input type="text" name="user" id="user">
+        </label>
+
+        <br>
+
+        <label>
+            密码
+            <input type="password" name="pass" id="pass">
+        </label>
+
+        <br>
+
+        <button id="btn">提交</button>
+    </form>
+
+    <script>
+        $(function () {
+            $("#form").click(function () {
+                //jquery的ajax的一级封装 get请求
+                /* $.ajax({
+                    // url: "/login?user=" + $("#user").val() + "&pass=" + $("#pass").val(), //请求地址
+                    url: "/login", //请求地址
+                    data: "user=" + $("#user").val() + "&pass=" + $("#pass")
+                        .val(), //可以把查询字符串的数据单独书写出来
+
+                    // data: {
+                    //     user: $("#user").val(),
+                    //     pass: $("#pass").val()
+                    // },//可以把查询字符串的数据单独书写出来
+
+                    type: "GET", //请求方式
+                    cache: false, //是否读取缓存
+                    dataType: "json", //希望得到的json地址
+                    success(data) { //成功回调函数
+                        console.log(data);
+                    }
+                }) */
+
+
+
+                //post请求
+                $.ajax({
+                    url: "/login", //请求地址
+                    // data: "user=" + $("#user").val() + "&pass=" + $("#pass").val(), //可以把查询字符串的数据单独书写出来
+
+                    data: {
+                        user: $("#user").val(),
+                        pass: $("#pass").val()
+                    }, //可以把查询字符串的数据单独书写出来
+
+                    type: "POST", //请求方式
+                    cache: false, //是否读取缓存
+                    dataType: "json", //希望得到的json地址
+                    success(data) { //成功回调函数
+                        console.log(data);
+                    }
+                })
+
+
+
+
+
+
+                //阻止默认事件
+                return false
+            })
+        })
+    </script>
+</body>
+
+</html>

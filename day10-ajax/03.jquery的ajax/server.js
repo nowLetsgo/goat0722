@@ -4,10 +4,8 @@ const path = require("path")
 
 //登录页面
 app.get("/", (req, res) => {
-    // const filePath = path.resolve(__dirname, '01.get请求.html');
-    // const filePath = path.resolve(__dirname, '02.post请求.html');
-    // const filePath = path.resolve(__dirname, '03.put请求.html');
-    const filePath = path.resolve(__dirname, '04.delete请求.html');
+    // const filePath = path.resolve(__dirname, 'index.html');
+    const filePath = path.resolve(__dirname, 'index2.html');
     res.sendFile(filePath)
 })
 

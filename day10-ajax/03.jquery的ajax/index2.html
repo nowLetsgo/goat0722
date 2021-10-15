@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.js"></script>
+</head>
+
+<body>
+    <form action="###" id="form">
+        <label>
+            用户名：
+            <input type="text" name="user" id="user">
+        </label>
+
+        <br>
+
+        <label>
+            密码
+            <input type="password" name="pass" id="pass">
+        </label>
+
+        <br>
+
+        <button id="btn">提交</button>
+    </form>
+
+    <script>
+        $(function () {
+            $("#form").click(function () {
+                //jquery对ajax进行了二级封装，可以直接使用get或者post方法请求
+                /* 
+                    参数：
+                        url:待载入页面的URL地址
+                        data:待发送 Key/value 参数。
+                        callback:载入成功时回调函数。
+                        type:返回内容格式，xml, html, script, json, text, _default。
+                
+                */
+                /* $.get("/login", {
+                    user: $("#user").val(),
+                    pass: $("#pass").val()
+                }, (data) => {
+                    console.log(data);
+                }, "json") */
+
+
+                /* $.post("/login", {
+                    user: $("#user").val(),
+                    pass: $("#pass").val()
+                }, (data) => {
+                    console.log(data);
+                }, "json") */
+
+
+
+                //getJSON是jquery的ajax的三级封装，直接是get请求json
+                $.getJSON("/login", {
+                    user: $("#user").val(),
+                    pass: $("#pass").val()
+                }, data => {
+                    console.log(data);
+                })
+
+                //阻止默认事件
+                return false
+            })
+        })
+    </script>
+</body>
+
+</html>
