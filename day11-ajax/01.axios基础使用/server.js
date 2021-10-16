@@ -4,15 +4,12 @@ const path = require("path")
 
 //登录页面
 app.get("/", (req, res) => {
-    // const filePath = path.resolve(__dirname, '01.get请求.html');
-    // const filePath = path.resolve(__dirname, '02.post请求.html');
-    // const filePath = path.resolve(__dirname, '03.put请求.html');
-    const filePath = path.resolve(__dirname, '04.delete请求.html');
+    const filePath = path.resolve(__dirname, 'index.html');
     res.sendFile(filePath)
 })
 
 //处理post请求报文体的中间件（把报文体的内容放在req.body上）
-app.use("",express.urlencoded({
+app.use("", express.urlencoded({
     extended: false
 }))
 app.use(express.json());
@@ -26,13 +23,15 @@ app.get("/login", (req, res) => {
     if (query.user === "laoli" && query.pass === '123456') {
         return res.json({
             code: 100001,
-            msg: "登录成功"
+            msg: "登录成功",
+            type: "GET"
         })
     }
 
     res.send({
         code: 100000,
-        msg: "登录失败"
+        msg: "登录失败",
+        type: "GET"
     })
 })
 
@@ -45,13 +44,15 @@ app.post("/login", (req, res) => {
     if (body.user === "laoli" && body.pass === '123456') {
         return res.json({
             code: 100001,
-            msg: "登录成功"
+            msg: "登录成功",
+            type: "POST"
         })
     }
 
     res.send({
         code: 100000,
-        msg: "登录失败"
+        msg: "登录失败",
+        type: "POST"
     })
 })
 
@@ -64,13 +65,15 @@ app.put("/login", (req, res) => {
     if (body.user === "laoli" && body.pass === '123456') {
         return res.json({
             code: 100001,
-            msg: "登录成功"
+            msg: "登录成功",
+            type: "PUT"
         })
     }
 
     res.send({
         code: 100000,
-        msg: "登录失败"
+        msg: "登录失败",
+        type: "PUT"
     })
 })
 
@@ -83,13 +86,15 @@ app.delete("/login", (req, res) => {
     if (query.user === "laoli" && query.pass === '123456') {
         return res.json({
             code: 100001,
-            msg: "登录成功"
+            msg: "登录成功",
+            type: "DELETE"
         })
     }
 
     res.send({
         code: 100000,
-        msg: "登录失败"
+        msg: "登录失败",
+        type: "DELETE"
     })
 })
 
