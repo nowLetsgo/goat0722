@@ -14,6 +14,7 @@ app.get("/login", (req, res) => {
             msg: "登录成功",
             type: "GET"
         }
+        //响应一段js代码，js代码的内容是调用了回调函数，并传入数据作为参数
         return res.send(`${query.callback}(${JSON.stringify(data)})`)
     }
 

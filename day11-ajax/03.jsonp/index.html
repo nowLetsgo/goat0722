@@ -28,10 +28,15 @@
         function fn(data) {
             console.log(data);
         }
+
+        let oScript = null;
         oForm.onsubmit = function () {
+            if (oScript) {
+                oScript.remove();
+            }
             //jsonP
             //创建一个script标签
-            const oScript = document.createElement("script");
+            oScript = document.createElement("script");
             oScript.src = "http://192.168.19.35:8888/login?user=" + oUser.value + "&pass=" + oPass.value +
                 "&callback=fn";
             //把script标签插入页面

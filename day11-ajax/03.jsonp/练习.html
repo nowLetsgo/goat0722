@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+    <input type="text" name="msg" id="search">
+    <button id="btn">搜索</button>
+
+    <script>
+        const oSearch = document.getElementById('search')
+        const oBtn = document.getElementById('btn')
+
+
+        /* function fn(data) {
+            console.log(data.s);
+        }
+        let oScript = null;
+        oBtn.onclick = function () {
+            if (oScript) {
+                oScript.remove();
+            }
+
+            oScript = document.createElement("script");
+            oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + oSearch.value + '&cb=fn';
+            document.body.appendChild(oScript)
+        } */
+
+
+
+        oBtn.onclick = function () {
+            $.getJSON('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + oSearch.value + '&cb=?', (
+                data) => {
+                console.log(data.s);
+            })
+        }
+    </script>
+</body>
+
+</html>
