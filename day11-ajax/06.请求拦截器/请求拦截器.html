@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <form id="form">
+        <div>
+            <span>用户名</span>
+            <input type="text" name="user" id="user">
+        </div>
+        <div>
+            <span>密码</span>
+            <input type="password" name="pass" id="pass">
+        </div>
+        <button id="btn1">登录</button>
+        <button id="btn2">注册</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oPass = document.getElementById('pass')
+        const oUser = document.getElementById('user')
+        const oBtn1 = document.getElementById('btn1')
+        const oBtn2 = document.getElementById('btn2')
+
+        //配置一个自定义的axios
+        const myAxios = axios.create({
+            baseURL: 'http://127.0.0.1:8888/',
+            timeout: 1000,
+            headers: {}
+        });
+
+        //请求拦截器
+        myAxios.interceptors.request.use((config) => {
+            //拦截器回调函数的参数 是当前请求的整个配置
+            console.log(config);
+
+            //在请求的查询字符串中添加一个时间戳
+            config.params._t = Date.now();
+
+            //当对配置处理完成之后，请把该配置return出去，继续向服务端发送
+            return config;
+        }, function (error) {
+            // 对请求错误做些什么
+            return Promise.reject(error);
+        })
+
+        oBtn1.onclick = function () {
+            myAxios({
+                url: "/login",
+                method: "get",
+                params: {
+                    user: oUser.value,
+                    pass: oPass.value
+                }
+            }).then(value => {
+                console.log(value);
+            }).catch(reason => {
+                console.log(reason);
+            })
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

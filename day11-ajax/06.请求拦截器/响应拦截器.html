@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <form id="form">
+        <div>
+            <span>用户名</span>
+            <input type="text" name="user" id="user">
+        </div>
+        <div>
+            <span>密码</span>
+            <input type="password" name="pass" id="pass">
+        </div>
+        <button id="btn1">登录</button>
+        <button id="btn2">注册</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oPass = document.getElementById('pass')
+        const oUser = document.getElementById('user')
+        const oBtn1 = document.getElementById('btn1')
+        const oBtn2 = document.getElementById('btn2')
+
+        //配置一个自定义的axios
+        const myAxios = axios.create({
+            baseURL: 'http://127.0.0.1:8888/',
+            timeout: 1000,
+            headers: {}
+        });
+
+        //响应拦截器
+        myAxios.interceptors.response.use(req => {
+            //响应拦截器先拿到了响应的数据
+            console.log(req);
+
+            //当响应成功的时候，根据数据再次判断是否成功
+            if (req.data.code === 100001) {
+                return req.data;
+            } else {
+                //错误处理
+                return Promise.reject(req.data.msg)
+            }
+
+            /*  //直接响应结果中数据
+             return req.data; */
+        }, function (error) {
+            // 对响应错误做点什么
+            return Promise.reject(error);
+        })
+
+
+        oBtn1.onclick = function () {
+            myAxios({
+                url: "/login",
+                method: "get",
+                params: {
+                    user: oUser.value,
+                    pass: oPass.value
+                }
+            }).then(value => {
+                console.log(value);
+            }).catch(reason => {
+                console.log(reason);
+            })
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

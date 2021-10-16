@@ -8,12 +8,17 @@ app.get("/", (req, res) => {
     res.sendFile(filePath)
 })
 
+app.use((req, res, next) => {
+    console.log(req.headers);
+    next()
+})
 
 //登录get接口
 app.get("/login", (req, res) => {
     //拿到查询字符串
     const query = req.query;
     console.log(query);
+    console.log(1);
     // console.log(req);
 
 

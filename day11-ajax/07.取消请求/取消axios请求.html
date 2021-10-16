@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <form id="form">
+        <div>
+            <span>用户名</span>
+            <input type="text" name="user" id="user">
+        </div>
+        <div>
+            <span>密码</span>
+            <input type="password" name="pass" id="pass">
+        </div>
+        <button id="btn1">登录</button>
+        <button id="btn2">取消请求</button>
+    </form>
+    <script>
+        const oForm = document.getElementById('form')
+        const oPass = document.getElementById('pass')
+        const oUser = document.getElementById('user')
+        const oBtn1 = document.getElementById('btn1')
+        const oBtn2 = document.getElementById('btn2')
+
+
+
+
+        //使用 CancelToken.source 工厂方法创建 cancel token
+        const CancelToken = axios.CancelToken;
+        const source = CancelToken.source();
+
+
+        oBtn1.onclick = function () {
+            axios({
+                url: "http://127.0.0.1:8888/login",
+                method: "get",
+                params: {
+                    user: oUser.value,
+                    pass: oPass.value
+                },
+                //给某一个请求配置 可以中断请求的token
+                cancelToken: source.token
+            }).then(value => {
+                console.log(value);
+            }).catch(reason => {
+                //错误处理中能接受到取消的信息
+                console.log(reason);
+            })
+
+            return false;
+        }
+
+        oBtn2.onclick = function () {
+            //取消配置有cancelToken的请求
+            source.cancel('我就想取消你');
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>
