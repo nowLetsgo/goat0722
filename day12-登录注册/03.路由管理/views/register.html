@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="/public/css/register.css">
     <script src="/public/js/axios.min.js"></script>
 </head>
 
@@ -15,17 +15,18 @@
         <div class="con">
             <img src="/public/img/logo.png" alt="">
             <h2>尚硅谷学生管理系统注册账号</h2>
-            <form class="ipts">
+            <form class="ipts" action="#">
                 <input type="text" id="user" placeholder="用户名">
                 <input type="password" id="pass" placeholder="密码">
-                <button id="btn">登录</button>
+                <input type="password" id="passAgain" placeholder="再次输入密码">
+                <button id="btn">注册</button>
             </form>
         </div>
     </div>
     <script>
         /* 
             接口文档：
-                url:"/login",
+                url:"/register",
                 method:"POST",
                 请求字段：
                     user:用户名 Str
@@ -34,15 +35,17 @@
                     code：状态代码 10000:成功 10001：失败
                     msg：响应状态
         */
-        const oBtn = document.getElementById('btn');
-        const oPass = document.getElementById('pass');
         const oUser = document.getElementById('user');
+        const oPass = document.getElementById('pass');
+        const oPassAgain = document.getElementById('passAgain');
+        const oBtn = document.getElementById('btn');
 
-        // 添加响应拦截器
+        //axios响应拦截器 对数据提取
+
         axios.interceptors.response.use((response) => {
-            // 对响应数据做点什么
+            //对数据的提取，当注册成功才会成功，否则认定失败
             if (response.data.code === 10000) {
-                return response.data.msg
+                return response.data.msg;
             } else {
                 return Promise.reject(response.data.msg)
             }
@@ -51,30 +54,42 @@
             return Promise.reject(error);
         });
 
+
+
         oBtn.onclick = function () {
+            //获取用户输入的内容
+            const userName = oUser.value;
+            const passWord = oPass.value;
+            const passWordAgain = oPassAgain.value;
 
-            const user = oUser.value;
-            const pass = oPass.value;
-
-            //判断不能为空
-            if (user === "" || pass === "") {
-                alert("账号名或密码不能为空");
+            //不能为空判断
+            if (userName === "" || passWord === "" || passWordAgain === "") {
+                alert("三者不能为空")
                 return false;
             }
 
-            //axios请求
-            axios.post("/login", {
-                user,
-                pass
+            //两次密码一致判断
+            if (passWord !== passWordAgain) {
+                alert("两次密码的输入不一致");
+                return false
+            }
+
+
+            //进行axios请求
+            axios.post("/register", {
+                user: userName,
+                pass: passWord
             }).then(value => {
+                //注册成功
                 alert(value);
-                location.href = "./center.html"
+                //跳转到登录页面
+                location.href = "./login.html"
             }).catch(reason => {
+                //注册失败
                 alert(reason);
             })
 
-
-            return false
+            return false;
         }
     </script>
 </body>

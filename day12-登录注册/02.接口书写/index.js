@@ -21,6 +21,33 @@ app.use("", express.urlencoded({
 }))
 app.use(express.json());
 
+
+//正则验证中间件
+app.use((req, res, next) => {
+    const {
+        user,
+        pass
+    } = req.body;
+
+    const userReg = /^[A-Z][A-Za-z0-9]{4,9}$/g;
+    const passReg = /^\d{3,6}$/g;
+    if (!userReg.test(user)) {
+        return res.json({
+            code: 10004,
+            msg: "用户名应该是大写字母开头，后边字母数字，总共5-10位"
+        })
+    }
+
+    if (!passReg.test(pass)) {
+        return res.json({
+            code: 10004,
+            msg: "密码是3-6为的数字"
+        })
+    }
+
+    next();
+})
+
 //注册接口
 /* 
     接口文档：
