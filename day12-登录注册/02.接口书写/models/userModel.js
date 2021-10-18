@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String, //约束数据类型是String
-        unique: true, //唯一的
         required: true, //必填项
     }, //直接约束数据类型
     createTime: {
