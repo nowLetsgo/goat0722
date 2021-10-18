@@ -59,7 +59,7 @@
                 xhr.open(method, url + query, true);
 
                 //判断当前是什么请求
-                if (method.toLowerCase === "post" || method.toLowerCase === "put") {
+                if (method.toLowerCase() === "post" || method.toLowerCase() === "put") {
                     xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8")
                     xhr.send(JSON.stringify(data));
                 } else {
