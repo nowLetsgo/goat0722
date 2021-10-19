@@ -14,8 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "md5": "^2.3.0",
     "mongoose": "^6.0.10"
   }

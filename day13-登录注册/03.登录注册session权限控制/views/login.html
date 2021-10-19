@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/login.css">
+    <script src="/public/js/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="con">
+            <img src="/public/img/logo.png" alt="">
+            <h2>尚硅谷学生管理系统注册账号</h2>
+            <form class="ipts">
+                <input type="text" id="user" placeholder="用户名">
+                <input type="possword" id="pass" placeholder="密码">
+                <button id="btn">登录</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        /* 
+            接口文档：
+                url:"/login",
+                method:"POST",
+                请求字段：
+                    user:用户名 Str
+                    pass:密码 Str
+                响应字段：
+                    code：状态代码 10000:成功 10001：失败
+                    msg：响应状态
+        */
+        const oBtn = document.getElementById('btn');
+        const oPass = document.getElementById('pass');
+        const oUser = document.getElementById('user');
+
+        // 添加响应拦截器
+        axios.interceptors.response.use((response) => {
+            // 对响应数据做点什么
+            if (response.data.code === 10000) {
+                return response.data.msg
+            } else {
+                return Promise.reject(response.data.msg)
+            }
+        }, function (error) {
+            // 对响应错误做点什么
+            return Promise.reject(error);
+        });
+
+        oBtn.onclick = function () {
+
+            const user = oUser.value;
+            const pass = oPass.value;
+
+            //判断不能为空
+            if (user === "" || pass === "") {
+                alert("账号名或密码不能为空");
+                return false;
+            }
+
+            //axios请求
+            axios.post("/login", {
+                user,
+                pass
+            }).then(value => {
+                alert(value);
+                location.href = "./center.html"
+            }).catch(reason => {
+                alert(reason);
+            })
+
+
+            return false
+        }
+    </script>
+</body>
+
+</html>
