@@ -4,7 +4,7 @@ const path = require("path")
 
 //1.官方的静态资源中间件（服务器上的文件响应）
 //暴露views中的静态文件，直接可以在服务器的地址栏后添加对应的静态资源路径即可访问
-app.use(express.static(path.resolve(__dirname, "./views")))
+app.use("/",express.static(path.resolve(__dirname, "./views")))
 //暴露public中的静态文件，但是做了路径限制，在服务器地址后添加/public/+静态资源路径即可访问
 app.use("/public/", express.static(path.resolve(__dirname, "./public")))
 

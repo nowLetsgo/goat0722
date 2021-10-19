@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 
 //引入userModel模块
-const userModel = require("./models/userModel");
+const userModel = require("../models/userModel");
 
 //引入md5模块
 const md5 = require("md5");
