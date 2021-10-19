@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="red">red</button>
+    <button id="green">green</button>
+    <button id="yellow">yellow</button>
+    <button id="pink">pink</button>
+    <script>
+        const oRed = document.getElementById('red')
+        const oGreen = document.getElementById('green')
+        const oYellow = document.getElementById('yellow')
+        const oPink = document.getElementById('pink')
+
+        //获取本地存储的主题颜色
+        const bgColor = localStorage.getItem("bgColor");
+        if (bgColor) {
+            document.body.style.background = bgColor;
+        }
+
+        oRed.onclick = function () {
+            document.body.style.background = "red"
+
+            localStorage.setItem("bgColor", "red")
+        }
+        oGreen.onclick = function () {
+            document.body.style.background = "green"
+
+            localStorage.setItem("bgColor", "green")
+        }
+
+        oYellow.onclick = function () {
+            document.body.style.background = "yellow"
+
+            localStorage.setItem("bgColor", "yellow")
+        }
+        oPink.onclick = function () {
+            document.body.style.background = "pink"
+
+            localStorage.setItem("bgColor", "pink")
+        }
+    </script>
+</body>
+
+</html>

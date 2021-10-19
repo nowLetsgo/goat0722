@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/index.css">
+    <script src="/public/js/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="con">
+            <img src="/public/img/logo.png" alt="">
+            <h2 id="welcome">欢迎光临 888号为您服务</h2>
+        </div>
+    </div>
+    <script>
+        const oWelcome = document.getElementById('welcome')
+        // 添加响应拦截器
+        axios.interceptors.response.use((response) => {
+            // 对响应数据做点什么
+            if (response.data.code === 10000) {
+                return response.data.msg
+            } else {
+                return Promise.reject(response.data.msg)
+            }
+        }, function (error) {
+            // 对响应错误做点什么
+            return Promise.reject(error);
+        });
+
+
+        axios.post("/center")
+            .then(value => {
+                //得到是用户名 所以直接填充到页面
+                oWelcome.textContent = `欢迎光临 888号${value}为您服务`
+            })
+            .catch(reason => {
+                alert(reason);
+                location.href = "./login.html"
+            })
+    </script>
+</body>
+
+</html>
