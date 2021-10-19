@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const path = require("path")
+const {
+    exec
+} = require("child_process")
 
 //连接数据库 及引入数据库的集合信息
 require("./db")
@@ -55,4 +58,6 @@ app.listen("8888", err => {
         return;
     }
     console.log("服务端启动成功 http://192.168.19.38:8888");
+    //自动的打开浏览器
+    exec("start http://192.168.19.38:8888")
 })
