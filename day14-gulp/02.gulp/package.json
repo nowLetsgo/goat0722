@@ -15,10 +15,13 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-browserify": "^0.5.1",
+    "gulp-connect": "^5.7.0",
     "gulp-jshint": "^2.1.0",
     "jshint": "^2.13.1"
   },
   "dependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^5.0.0",
     "gulp-rename": "^2.0.0"
   }
 }
