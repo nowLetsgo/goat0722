@@ -21,5 +21,15 @@
     "express-session": "^1.17.2",
     "md5": "^2.3.0",
     "mongoose": "^6.0.10"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ]
   }
 }
