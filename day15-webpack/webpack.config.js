@@ -36,7 +36,14 @@ module.exports = {
                         maxSize: 15 * 1024, // 小于15kb以下的图片会被打包成base64格式
                     },
                 },
-            }
+            }, {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: [/\.ttf$/, /\.woff$/, /\.woff2$/],
+                type: 'asset/resource',
+            },
         ],
     },
     //插件配置
