@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _add__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add */ \"./src/js/add.js\");\n\r\n\r\nconsole.log(\"add\", (0,_add__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(1, 1));\r\n\r\nconsole.log(1 === 2);\n\n//# sourceURL=webpack://webpack-test/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _add__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add */ \"./src/js/add.js\");\n\r\n\r\nconsole.log(\"add\", (0,_add__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(1, 1));\r\n\r\nconsole.log(1 === 2)\n\n//# sourceURL=webpack://webpack-test/./src/js/index.js?");
 
 /***/ })
 

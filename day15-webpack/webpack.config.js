@@ -1,4 +1,7 @@
-const path = require("path")
+const path = require("path");
+
+const ESLintPlugin = require('eslint-webpack-plugin');
+
 module.exports = {
     //入口目录 相对于webpack.config的位置
     entry: "./src/js/index.js",
@@ -9,6 +12,8 @@ module.exports = {
         //webpack打包的参考路径
         path: path.resolve(__dirname, "build")
     },
+    //插件配置
+    plugins: [new ESLintPlugin()],
     //开发模式
     mode: "development"
-}
+};
