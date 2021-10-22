@@ -12,8 +12,22 @@ module.exports = {
         //webpack打包的参考路径
         path: path.resolve(__dirname, "build")
     },
+    //loader配置
+    module: {
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"],
+                },
+            },
+        }],
+    },
     //插件配置
     plugins: [new ESLintPlugin()],
     //开发模式
+    // mode: "production"
     mode: "development"
 };
