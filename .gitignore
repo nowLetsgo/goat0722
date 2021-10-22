@@ -1,3 +1,4 @@
 /node_modules
 *.mp4
 /day14-gulp/02.gulp/node_modules
+/day15-webpack/node_modules
