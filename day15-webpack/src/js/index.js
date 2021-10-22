@@ -1,4 +1,6 @@
 import add from "./add";
+import '../less/main.less'
+import '../less/public.less'
 
 console.log("add", add(1, 1));
 

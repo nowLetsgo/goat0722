@@ -23,6 +23,9 @@ module.exports = {
                     presets: ["@babel/preset-env"],
                 },
             },
+        }, {
+            test: /\.less$/,
+            use: ["style-loader", "css-loader", "less-loader"]
         }],
     },
     //插件配置
