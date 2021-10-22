@@ -6,6 +6,9 @@ const rename = require("gulp-rename");
 const less = require("gulp-less");
 const concat = require("gulp-concat");
 const connect = require("gulp-connect");
+const uglify = require("gulp-uglify");
+const cssmin = require("gulp-cssmin");
+const htmlmin = require("gulp-htmlmin");
 const {
     exec
 } = require("child_process")
@@ -95,3 +98,37 @@ gulp.task("connect", function () {
 
 
 gulp.task("watch", gulp.series(["dev", "connect"]));
+
+
+gulp.task("uglify", function () {
+    return gulp
+        .src("./dist/js/build.js")
+        .pipe(uglify())
+        .pipe(rename("build.min.js"))
+        .pipe(gulp.dest("./build/js"));
+});
+
+gulp.task("cssmin", function () {
+    return gulp
+        .src("./dist/css/all.css")
+        .pipe(cssmin())
+        .pipe(rename("all.min.css"))
+        .pipe(gulp.dest("./build/css"));
+});
+
+gulp.task("htmlmin", function () {
+    return gulp
+        .src("./src/index.html")
+        .pipe(
+            htmlmin({
+                collapseWhitespace: true, // 去除空格换行符
+                removeComments: true, // 去除注释
+            })
+        )
+        .pipe(gulp.dest("./build"));
+});
+
+//配置打包生产环境代码命令
+gulp.task("js-prod", gulp.series(["js-dev", "uglify"]))
+gulp.task("css-prod", gulp.series(["less", "cssmin"]))
+gulp.task("build", gulp.parallel(["js-prod", "css-prod", "htmlmin"]))
