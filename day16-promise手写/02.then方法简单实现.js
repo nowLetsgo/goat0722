@@ -1,4 +1,4 @@
-function MyPromise(exector) {
+function MyPromise(executor) {
     //保存当前this
     const _this = this;
 
@@ -36,26 +36,26 @@ function MyPromise(exector) {
 
         //当reject的时候，调用then的onRejected的方法，并把失败对象的值传入
         setTimeout(() => {
-            _this.onResolved && _this.onResolved(reason);
+            _this.onRejected && _this.onRejected(reason);
         })
 
     }
 
     //实例化构造函数的时候，会传递一个函数作为参数，我们内部要调用这个参数，并传入两个函数作为实参
-    exector(resolve, reject);
+    executor(resolve, reject);
 }
 
 
 //以下这种判断逻辑上是错误的：因为当then执行的时候，promise中的异步代码并没有执行，所以promise对象的状态也没有发生改变，所以onResolved和onrejected两个函数不符合if条件不能执行，所以我们要考虑onResolved和onrejected两个函数应该在promise对象的状态发生改变后再调用（promise对象中调用resolve和reject方法后再调用）
 /* //then方法是实例化对象调用的，在原型对象上
-MyPromise.prototype.then = function (onResolved, onrejected) {
+MyPromise.prototype.then = function (onResolved, onRejected) {
     const _this = this;
 
     if (_this.state === "fulfilled") {
         onResolved(_this.result);
     }
     if (_this.state === "rejected") {
-        onrejected(_this.result);
+        onRejected(_this.result);
     }
 } */
 
@@ -63,12 +63,12 @@ MyPromise.prototype.then = function (onResolved, onrejected) {
 
 //then方法是实例化对象调用的，在原型对象上
 //正确的逻辑是把onResolved和onrejected两个函数在promise构造函数内的resolve和reject方法执行后再调用，不要在then中直接调用
-MyPromise.prototype.then = function (onResolved, onrejected) {
+MyPromise.prototype.then = function (onResolved, onRejected) {
     const _this = this;
 
     //因为onResolved和onrejected函数是局部变量，想要在其他位置执行
     //请把这两个函数放在this上（实例化对象上），这样其他位置就能获取到这两个方法
     _this.onResolved = onResolved;
-    _this.onrejected = onrejected;
+    _this.onRejected = onRejected;
 
 }

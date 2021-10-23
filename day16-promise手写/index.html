@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./02.then方法简单实现.js"></script>
+    <script src="./03.then方法返回值.js"></script>
 </head>
 
 <body>
@@ -21,11 +21,15 @@
 
         console.log(p1);
 
-        p1.then(value => {
+        const p2 = p1.then(value => {
             console.log(value);
+            return new MyPromise();
+            return 1
         }, reason => {
             console.log(reason);
         })
+
+        console.log("p2", p2);
     </script>
 </body>
 
