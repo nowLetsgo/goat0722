@@ -45,7 +45,6 @@ function MyPromise(executor) {
     executor(resolve, reject);
 }
 
-
 //then方法是实例化对象调用的，在原型对象上
 //正确的逻辑是把onResolved和onrejected两个函数在promise构造函数内的resolve和reject方法执行后再调用，不要在then中直接调用
 MyPromise.prototype.then = function (onResolved, onRejected) {
@@ -110,7 +109,6 @@ MyPromise.prototype.catch = function (onRejected) {
     return this.then(null, onRejected)
 }
 
-
 MyPromise.prototype.finally = function (onResolved) {
     //我们使用then来判断调用finally的是成功还是失败的promise对象
     //而then刚好返回promise对象，所以finally直接返回then的返回值即可
@@ -155,5 +153,39 @@ MyPromise.prototype.finally = function (onResolved) {
             throw reason;
         }
 
+    })
+}
+
+
+//封装一个resolve的静态方法
+//resolve快速创建一个成功的promise对象，如果里边传的是一个普通值，则成功promise对象的值就是参数传递的值
+//如果resolve传递的是一个promise对象，则resolve创建的promise对象的状态和值 参照参数的promise对象的状态和值
+MyPromise.resolve = function (info) {
+    //一定会返回一个promise对象
+    return new MyPromise((resolve, reject) => {
+        //判断info是不是promise对象
+        if (info instanceof MyPromise) {
+            //判断当前的info是成功还是失败状态的
+            info.then(value => {
+                //如果成功，则也让resolve方法返回成功，只为当前的value
+                resolve(value)
+            }, reason => {
+                //如果失败，则整个resolve方法返回失败的promise对象，值为info失败的值
+                reject(reason)
+            })
+        } else {
+            //如果不是,则直接返回一个成功状态即可,值为info
+            resolve(info)
+        }
+    })
+}
+
+
+
+//reject静态方法
+//无论reject的静态方法中传递什么样的值，都是作为失败的promise对象的值
+MyPromise.reject = function (info) {
+    return new MyPromise((resolve, reject) => {
+        reject(info)
     })
 }
