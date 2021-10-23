@@ -6,19 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./01.promise构造函数.js"></script>
+    <script src="./02.then方法简单实现.js"></script>
 </head>
 
 <body>
     <script>
         const p1 = new MyPromise((resolve, reject) => {
             setTimeout(() => {
-                resolve("ok");
+                // resolve("ok");
                 reject("error");
             }, 2000)
+            // resolve("ok")
         })
 
         console.log(p1);
+
+        p1.then(value => {
+            console.log(value);
+        }, reason => {
+            console.log(reason);
+        })
     </script>
 </body>
 
