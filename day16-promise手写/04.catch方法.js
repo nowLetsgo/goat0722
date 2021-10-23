@@ -104,20 +104,8 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
 
 }
 
-
-
-//then的函数调用逻辑简化
-
-/* function fn1() {
-    //XXXXX
-    this.b()
+MyPromise.prototype.catch = function (onRejected) {
+    //catch方法其实就是then的第二个参数的写法，用来处理失败的回调函数的
+    //所以当用户调用catch的时候，我们可以直接在内部调用then方法，并把回调函数传入then作为第二个参数
+    return this.then(null, onRejected)
 }
-
-function fn2(a) {
-    //但是a必须要达到fn1中的某个条件的时候才能调用a，所以我把a写在一个b函数中,在b函数中调用a
-    //当fn1中条件达到的时候，调用b，此时下边的b就会执行，a也就才执行，并且a也在以下位置调用，可能拿到a的返回值
-    this.b = function () {
-        //因为我要在这个位置拿到a的返回值，所以a必须在这个位置调用
-        a()
-    }
-} */

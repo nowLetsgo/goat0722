@@ -104,20 +104,41 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
 
 }
 
-
-
-//then的函数调用逻辑简化
-
-/* function fn1() {
-    //XXXXX
-    this.b()
+MyPromise.prototype.catch = function (onRejected) {
+    //catch方法其实就是then的第二个参数的写法，用来处理失败的回调函数的
+    //所以当用户调用catch的时候，我们可以直接在内部调用then方法，并把回调函数传入then作为第二个参数
+    return this.then(null, onRejected)
 }
 
-function fn2(a) {
-    //但是a必须要达到fn1中的某个条件的时候才能调用a，所以我把a写在一个b函数中,在b函数中调用a
-    //当fn1中条件达到的时候，调用b，此时下边的b就会执行，a也就才执行，并且a也在以下位置调用，可能拿到a的返回值
-    this.b = function () {
-        //因为我要在这个位置拿到a的返回值，所以a必须在这个位置调用
-        a()
-    }
-} */
+
+MyPromise.prototype.finally = function (onResolved) {
+    //我们使用then来判断调用finally的是成功还是失败的promise对象
+    //而then刚好返回promise对象，所以finally直接返回then的返回值即可
+    return this.then(value => {
+        //当成功的promise调用finally
+        //获取finally回调函数的返回值，是不是promise对象
+        const result = onResolved();
+        if (result instanceof MyPromise) {
+            //判断result是成功的promise还是失败的promise
+            return result.then(value => {
+                //直接在当前的then中return一个值，当前的then就返回成功的promise对象
+                //因为当前的then的返回值被return出去了，所以外边的then也返回成功的promise对象
+                return value;
+            }, reason => {
+                //当result是失败的promise对象的时候，当前的then要返回一个失败的promise对象，
+                //在当前的catch中，如果直接报错，则当前的catch所在的then直接返回失败的promise对象
+                throw reason;
+            })
+        } else {
+            //当finally中的回调函数返回的不是promise对象的时候，则控制then返回成功的promise对象即可
+            //在then中的第一个回调函数中，直接返回一个值，则then的返回的promise对象是成功状态，值为return的值
+            return value;
+            /* return new MyPromise((resolve, reject) => {
+                resolve(value)
+            }) */
+        }
+    }, reason => {
+        //当失败的promise对象调用finally
+
+    })
+}

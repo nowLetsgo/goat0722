@@ -15,21 +15,39 @@
             setTimeout(() => {
                 // resolve("ok");
                 reject("error");
-            }, 2000)
+            }, 1000)
             // resolve("ok")
         })
 
         console.log(p1);
 
-        const p2 = p1.then(value => {
+        /* const p2 = p1.then(value => {
+            throw new Error("error")
             console.log(value);
-            return new MyPromise();
-            return 1
+            return new MyPromise((resolve, reject) => {
+                reject(2)
+            })
         }, reason => {
+            // throw new Error("error")
             console.log(reason);
+            return new MyPromise((resolve, reject) => {
+                resolve(2)
+            })
         })
 
-        console.log("p2", p2);
+        console.log("p2", p2); */
+
+
+        p1.finally(() => {})
+
+        p1.then(() => {
+            return 1
+        })
+        p1.then(() => {
+            return new Promise(resolve, reject) => {
+                resolve(1)
+            }
+        })
     </script>
 </body>
 
