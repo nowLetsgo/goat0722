@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 创建一个容器 -->
+    <div id="test"></div>
+
+    <script type="text/babel">
+        //创建一个虚拟DOM 如果结构过多的话，可以使用小括号括起来，在视觉上构成一个整体
+        const VDOM = (
+            <h2>
+                我是React 
+                <span>Hello</span>
+            </h2>
+        );
+
+        //渲染
+        ReactDOM.render(VDOM,document.getElementById("test"))
+    </script>
+</body>
+
+</html>

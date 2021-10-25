@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 创建一个容器 -->
+    <div id="test"></div>
+
+    <script type="text/babel">
+        /* 
+            关于虚拟DOM 
+                - 本质上就是一个对象（object）
+                - 虚拟DOM是比较轻量级的对象，真实DOM是重量级的对象，虚拟DOM是React内部使用，不需要太多属性
+                - React的操作大多数都是在操作虚拟DOM，但是虚拟DOM早晚会被渲染为真实DOM呈现在浏览器上
+        
+        
+        */
+        //获取一个真实DOM
+        const oTest = document.getElementById('test');
+        console.log(oTest);
+        
+
+
+        //获取一个虚拟DOM
+        const vDOM = <h2>hello React</h2>;
+        console.log(vDOM);
+        console.log(typeof vDOM);
+
+        // debugger;
+
+        //虚拟DOM伪代码
+        /* const VDOM = {
+            tagName:"div",
+            props:{
+                id:"tit",
+                className:"tit"
+            },
+            children:[
+                {
+                    tagName:"span",
+                    props:{},
+                    children:[] 
+                },
+                {
+                    tagName:"p",
+                    props:{},
+                    children:[] 
+                }
+            ]
+        } */
+    </script>
+</body>
+
+</html>
