@@ -23,15 +23,18 @@
         const arr = ["HTML","CSS","React","Vue"];
         // const arr = [<li>HTML</li>,<li>CSS</li>,<li>React</li>,<li>Vue</li>];
 
-        /* 
-            虚拟DOM中，大括号中放入一个数组，则直接会把数组展开
-            在虚拟DOM中，遍历得到的多个虚拟DOM列表，需要有唯一的key属性值
-        */
+        
         //虚拟DOM
         const VDOM = (
             <div>
                 <h1>前端技术列表</h1>
                 <ul>
+                    {
+                        /* 
+                            虚拟DOM中，大括号中放入一个数组，则直接会把数组展开
+                            在虚拟DOM中，遍历得到的多个虚拟DOM列表，需要有唯一的key属性值
+                        */
+                    }
                     {
                         arr.map((item,index)=>{
                             return <li key={index}>{item}</li>
