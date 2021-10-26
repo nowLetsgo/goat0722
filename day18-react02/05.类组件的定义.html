@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        //类组件的定义
+        //类组件的定义需要继承React.Component类，才可以被认定为是一个类组件
+        class Hello extends React.Component{
+            //类组件的定义中必须拥有render方法，当组件在挂载的时候，需要加载render方法获取虚拟DOM
+            render(){
+                //render方法必须要返回一个虚拟DOM
+                //render方法是Hello类的原型对象上的方法
+                //render方法是类的实例对象调用，this指向当前类的实例对象
+                //this指向的是Hello的实例对象（Hello的组件实例）
+                console.log(this);
+                return <h2>我是类组件定义</h2>
+            }
+        }
+
+        //渲染
+        ReactDOM.render(<Hello/>,document.getElementById('test'))
+        /* 
+            <Hello/>的寻找过程
+                - 发现<Hello/>标签，然后开始去查找当前的组件
+                    如果查找不到，则直接报错，Hello is not defined
+                    如果查询到了，则进行下一步
+
+                - 判断当前的<Hello/>组件是函数定义还是类定义，如果是类定义，React则实例化Hello类，得到一个实例化对象h，然后通过h.render方法得到虚拟DOM，然后进行渲染
+
+        
+        */
+    </script>
+</body>
+
+</html>
