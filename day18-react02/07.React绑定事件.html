@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        //定义组件
+        class Wea extends React.Component{
+            constructor(props){
+                super(props);
+                //本身组件实例上就已经有了state属性，值默认是null，所以以后有状态可以放在当前组件实例的state上
+                //state必须是一个object或者null
+                this.state = {
+                    isHot:false,
+                    temp:30
+                }
+            }
+            render(){
+                console.log(this);//组件实例
+                /* 
+                    React 元素的事件处理和 DOM 元素的很相似，但是有一点语法上的不同：
+
+                        - React 事件的命名采用小驼峰式（camelCase），而不是纯小写。
+                        - 使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串
+                
+                */
+                return (
+                    <div>  
+                        {/*在虚拟DOM上绑定事件请使用React提供的写法，React有自己一套事件封装，onclick-->onClick*/}
+                        <h1 id="change" onClick={changeWea}>今天天气真{this.state.isHot?"炎热":"寒冷"}啊</h1>
+                        <h2>今天的温度是{this.state.temp}度</h2>
+                    </div>
+                )
+            }
+
+        }
+
+        function changeWea(){
+            console.log("changeWea");
+        }
+        
+
+
+        //渲染
+        ReactDOM.render(<Wea/>,document.getElementById('test'));
+
+
+        //禁止使用如下方式绑定事件，因为我们不能直接操作DOM
+        /* const oChange = document.getElementById('change');
+        oChange.onclick = function(){
+            console.log("click");
+        } */
+
+    </script>
+</body>
+
+</html>
