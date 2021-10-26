@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        /* 
+            函数式定义组件：（简单组件）
+                - 组件名首字母要求大写
+                - 函数式组件内部需要返回一个虚拟DOM
+                - 在ReactDOM.render方法的第一个参数也可以接受一个组件，格式是<components />
+
+            函数式定义组件的特点：
+                - 函数式组件内部this指向为undefined（被babel编译为了严格模式，当React需要这个组件的时候，这个函数就是自己调用）
+                - 函数式组件内部没有状态（state）
+                - 函数式组件会被更新并挂载，但是没有生命周期函数 
+
+            如果某个组件没有用到内部状态state或者其他不具备的功能，则可以使用函数式组件编程，轻量级，简单，效率高
+                
+        */
+        function Fn(){
+            console.log(this);
+            return <h1>我是虚拟DOM 简单组件定义</h1>;
+        }
+
+        //渲染
+        ReactDOM.render(<Fn />,document.getElementById('test'));
+        /* 
+            当函数式组件挂载的时候，发生了什么事情：
+                - 先判断render的第一个参数是一个虚拟DOM还是组件
+                - 如果是组件，则去寻找该组件的定义
+                    - 如果没有找到这个组件的定义，则报错，该组件is not defined
+                    - 如果找到了这个组件，则进行下一步操作
+                - 当渲染时，找到组件定义的时候，则这个函数会被调用，并返回一个虚拟DOM让react进行渲染（这个定义组件的函数不是React调用的，而是React让这个函数自己调用的）
+        */
+    </script>
+</body>
+
+</html>

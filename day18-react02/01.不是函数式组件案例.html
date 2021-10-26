@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        /* 
+            直接书写一个函数，return出一个虚拟DOM，在render方法中调用函数，得到虚拟DOM
+            这样的书写方式没有问题
+            但是这样不能被称作组件化开发，这个函数也不能被称作为组件
+        
+        */
+        function fn(){
+            const VDOM = <h1>我是虚拟DOM</h1>;
+            return VDOM;
+        }
+
+        //渲染
+        ReactDOM.render(fn(),document.getElementById('test'));
+    </script>
+</body>
+
+</html>
