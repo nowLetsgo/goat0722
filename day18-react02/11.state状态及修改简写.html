@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        //定义组件
+        class Wea extends React.Component{
+            //如果不需要使用父类的this，或者不需要传参给子类扩展实例化对象上的属性和方法，则可以直接省略constructor
+            
+            //直接把state写在这个位置，对于class语法来说，仍然是设置给组件实例的
+            state = {
+                isHot:false,
+                temp:30,
+                a:1
+            }
+            
+            render(){
+                return (
+                    <div> 
+                        <h1 id="change" onClick={this.changeWea}>今天天气真{this.state.isHot?"炎热":"寒冷"}啊</h1>
+                        <h2>今天的温度是{this.state.temp}度</h2>
+                    </div>
+                )
+            }
+
+            //书写事件函数
+            changeWea = ()=>{
+                const {isHot} = this.state;
+                this.setState({isHot:!isHot})
+            }
+        }
+
+        //渲染
+        ReactDOM.render(<Wea/>,document.getElementById('test'));
+
+
+
+        
+
+    </script>
+</body>
+
+</html>

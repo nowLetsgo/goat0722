@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        //定义组件
+        class Wea extends React.Component{
+            constructor(props){
+                console.log("constructor执行");
+                super(props);
+                this.state = {
+                    isHot:false,
+                    temp:30,
+                    a:1
+                }
+            }
+            
+            render(){
+                console.log("render");//只要组件实例的状态发生改变，则实例对象就会重新的调用render方法  render的执行次数是1+n
+                // console.log(this);//组件实例
+                return (
+                    <div>  
+                        {/*在虚拟DOM上绑定事件请使用React提供的写法，React有自己一套事件封装，onclick-->onClick*/}
+                        {/*React事件属性必须是一个函数，当事件被触发的时候，React会让这个函数自己调用，所以这个函数的this可能会指向undefined*/}
+
+                        <h1 id="change" onClick={this.changeWea}>今天天气真{this.state.isHot?"炎热":"寒冷"}啊</h1>
+                        <h2>今天的温度是{this.state.temp}度</h2>
+                    </div>
+                )
+            }
+
+            //书写事件函数
+            changeWea = ()=>{
+                //当事件函数写成箭头函数的时候，没有自己的this，使用的是class的this，this指向组件实例
+                console.log("changeWea的this",this);
+                //修改state：react不认可下边的这种写法，只是修改了state对象，但是组件实例并没有收到修改
+                // console.log(this.state);
+                // this.state.isHot = true;
+
+                //请使用setState方法来进行修改组件实例的state属性，setState方法在组件实例的原型链上，所以我们可以通过组件实例来拿setState方法
+                //setState({key:value})  setState方法是把传入的对象合并到state中的
+                const {isHot} = this.state;//获取改变前的state的isHot的值
+                this.setState({isHot:!isHot})
+
+
+                /* const {a} = this.state
+                this.setState({a:a+1}) */
+
+            }
+        }
+
+        //渲染
+        ReactDOM.render(<Wea/>,document.getElementById('test'));
+
+
+
+        
+
+    </script>
+</body>
+
+</html>
