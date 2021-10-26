@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            //构造器方法--->当类被实例化的时候，会自动的调用构造器方法,并且实例化时传入的参数也会被传递给constructor
+            //构造器方法的this--->当前类的实例化对象
+            //constructor构造器方法可以省略 在实例化的时候会自动的添加
+            constructor(name, age) {
+                console.log(this);
+                this.name = name; //这个属性设置给了实例化对象
+                this.age = age; //这个属性设置给了实例化对象
+            }
+
+            //把属性直接设置给实例化对象，和在构造器中书写this.add = "尚硅谷"是一样的，但是构造器中可以传递参数
+            add = "尚硅谷";
+
+
+            //study方法在实例化对象身上，this也是指向实例化对象
+            study = function () {
+                console.log("study方法", this);
+            }
+
+            //hello是Person构造函数的静态属性-只有Person才能调用
+            static hello = "world";
+
+            //eat方法--->在原型对象上(原型对象上的方法供实例化对象使用)
+            eat() {
+                //原型对象的方法是被实例化对象调用的，所以原型对象方法中的this指向实例化对象
+                console.log(this); //实例化对象
+            }
+        }
+
+        //say方法是原型对象身上的
+        Person.prototype.say = function () {
+            console.log("干饭");
+        }
+
+        const p1 = new Person("laowang", 19);
+        console.log("p1", p1);
+    </script>
+</body>
+
+</html>

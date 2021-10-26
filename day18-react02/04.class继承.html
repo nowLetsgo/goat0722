@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            //把属性直接设置给实例化对象，和在构造器中书写this.add = "尚硅谷"是一样的，但是构造器中可以传递参数
+            add = "尚硅谷";
+
+            study = function () {
+                console.log("study方法", this);
+            }
+
+
+            static hello = "world";
+
+            eat() {
+                console.log(this);
+            }
+        }
+
+
+        //继承
+        class Student extends Person {
+            //子类根据自身情况决定是否书写constructor构造器方法
+            //当我们想要给自己的实例化对象扩展一些其他属性或方法的时候，需要用到构造器方法
+            //一旦书写构造器方法，请传入父类需要的参数
+            /* constructor(name, age) {
+                //super中也要写父类需要传递的参数
+                super(name, age)
+                this.sex = "nan"
+            } */
+
+            //如果直接把给实例化对象的属性放在构造器外边，则可以不书写构造器方法
+            sex = "nan"
+
+            speak() {
+                console.log("真的想干饭");
+            }
+        };
+        const s1 = new Student("laowang", 19);
+        console.log("s1", s1);
+    </script>
+</body>
+
+</html>
