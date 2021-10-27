@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+            render(){
+                console.log(this);
+                /* 
+                   - ref属性值可以是一个函数，请把函数放在{}中，也就是说在ref属性中书写了一个回调函数
+                   - 当渲染到ref属性的时候，react会先让这个回调函数自己调用
+                   - 这个ref的回调函数希望写成箭头函数的形式，这样this就能指向组件实例了
+                   - 当这个回调函数被调用的时候，react会向回调函数中传递一个实参，实参是当前ref所在的DOM节点,所以这个回调函数可以接受一个形参，形参就是当前的DOM元素
+                */
+                return (
+                    <div>
+                        {/* <input type="text" ref={(x)=>{console.log("x",x)}}/> */}
+
+                        <input type="text" ref={el => this.oIpt = el}/>
+                        <br/><br/>
+                        <button onClick={this.showIpt1}>点击我弹出上边输入框内容</button>
+                        <br/><br/>
+                        <input type="text"  placeholder="失去焦点的时候弹出输入内容" />
+                    </div>
+                )
+            }
+
+
+            //事件回调函数
+            showIpt1 = ()=>{
+                alert(this.oIpt.value)
+            }
+        }
+            
+
+        //渲染
+        ReactDOM.render(<Demo/>,document.getElementById('test'));
+    </script>
+</body>
+
+</html>
