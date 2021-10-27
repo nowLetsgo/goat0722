@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+
+    <script type="text/babel">
+        class UserInfo extends React.Component{
+            render(){
+                console.log(this);
+                console.log(this.props);
+
+                //解构赋值的形式拿到props的每一个属性
+                const{name,age,sex,car,add} = this.props;
+
+                return (
+                    <ul>
+                        <li>姓名是:{name}</li>
+                        <li>性别是:{sex}</li>
+                        <li>年龄是:{age}</li>
+                        <li>座驾是:{car}</li>
+                        <li>地址是:{add}</li>
+                    </ul>
+                )
+            }
+        }
+
+        //模拟请求回来的数据，需要把这个数据放在组件中
+        const msg = {
+            name:"lily",
+            age:"19",
+            sex:"男",
+            car:"摩拜",
+            add:"尚硅谷",
+        }
+        //外部想要向组件内部传递数据，可以使用属性的方式进行传递
+        ReactDOM.render(<UserInfo name={msg.name} age={msg.age} sex={msg.sex} car= {msg.car} add={msg.add} hobby="篮球" />,document.getElementById('test1'))
+        //批量传递的时候直接在属性中书写{...obj}即可，{}是jsx的插值语法,...msg是展开语法
+        //这样的语法不是js的语法，而是react+babel共同能编译的语法
+        //{...o}不但能够展开对象，还能补充对象
+        ReactDOM.render(<UserInfo {...msg} hobby="篮球"/>,document.getElementById('test2'))
+    </script>
+</body>
+
+</html>

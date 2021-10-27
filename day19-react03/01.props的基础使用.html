@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+
+    <script type="text/babel">
+        class UserInfo extends React.Component{
+            render(){
+                console.log(this);
+                //组件在渲染时传递的属性，全部放在组件实例的props对象上，可以直接通过this.props接收
+                console.log(this.props);
+
+                //不能修改props对象内的属性值：props对象的内容是只读的
+                // this.props.name += "~";
+                //不能给props扩展新的属性，因为props是不可扩展的
+                // this.props.hobby = "吹牛逼";
+
+                //以下这种方式可以对props属性得到的值做修改（但是仍然没有直接修改props）
+                let {name} = this.props;
+                name += "~";
+                return (
+                    <ul>
+                        <li>姓名是:{name}</li>
+                        {/* <li>姓名是:{this.props.name}</li> */}
+                        <li>性别是:{this.props.sex}~</li>
+                        <li>年龄是:{this.props.age}~</li>
+                    </ul>
+                )
+            }
+        }
+
+        //外部想要向组件内部传递数据，可以使用属性的方式进行传递
+        ReactDOM.render(<UserInfo name="laowang" sex="nan" age="18"/>,document.getElementById('test1'))
+        ReactDOM.render(<UserInfo name="xiaozhang" sex="nv" age="19"/>,document.getElementById('test2'))
+    </script>
+</body>
+
+</html>
