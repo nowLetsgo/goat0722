@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        //定义组件
+        class Wea extends React.Component{
+            /* 
+                通常，在 React 中，构造函数仅用于以下两种情况：
+                    - 通过给 this.state 赋值对象来初始化内部 state。
+                    - 为事件处理函数绑定实例
+
+                当时上边说的两种场景都可以不用constructor解决掉
+                    - 可以直接在class内部书写 state = {} 来初始化状态
+                    - 可以直接使用箭头函数的形式书写事件函数，也不需要写在constructor中
+
+
+                如果书写构造器，则希望能够在constructor和super中传入props
+                    - 如果不传，则会在constructor中无法获取props的值
+                    - 如果在constructor中没有使用props 或者 当前组件压根没有传入props 则可以忽略props的传递
+            */
+            constructor(props){
+                console.log("constructor执行");
+                super(props);
+                console.log("this.props",this.props);
+                // console.log("props",props);
+                this.state = {
+                    isHot:false,
+                    temp:30,
+                    a:1
+                }
+                this.changeWea= this.changeWea.bind(this);
+            }
+
+           /*  state={
+                isHot:false,
+                temp:30,
+                a:1
+            } */
+            
+            render(){
+                console.log(this.props);
+                return (
+                    <div>  
+                        <h1 id="change">今天天气真{this.state.isHot?"炎热":"寒冷"}啊</h1>
+                        <button  onClick={this.changeWea}>改变天气</button>
+                        <h2>今天的温度是{this.state.temp}度</h2>
+                    </div>
+                )
+            }
+
+            //书写事件函数
+            changeWea(){
+                const {isHot} = this.state;//获取改变前的state的isHot的值
+                this.setState({isHot:!isHot})
+            }
+            //书写事件函数
+            /* changeWea = ()=>{
+                const {isHot} = this.state;//获取改变前的state的isHot的值
+                this.setState({isHot:!isHot})
+            } */
+        }
+
+        //渲染
+        ReactDOM.render(<Wea name="laowang"/>,document.getElementById('test'));
+
+
+
+        
+
+    </script>
+</body>
+
+</html>
