@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+            render(){
+                console.log(this);
+                /* 
+                    - 组件实例上默认有一个refs的属性值为一个空对象
+                    - 当我们使用string类型的ref的时候，会把当前ref的值作为refs对象的key，值是当前ref所在的DOM节点
+                */
+                return (
+                    <div>
+                        <input type="text" ref="oIpt1"/>
+                        <br/><br/>
+                        <button onClick={this.iptValue} ref="oBtn">点击我弹出上边输入框内容</button>
+                        <br/><br/>
+                        <input type="text" onBlur={this.showMsg}  placeholder="失去焦点的时候弹出输入内容" />
+                    </div>
+                )
+            }
+            
+            //button的事件函数
+            iptValue = ()=>{
+                /* 
+                    当想要控制某个DOM节点的时候，给当前DOM节点添加一个ref属性，我们就可以通过组件实例的refs对象拿到对应的DOM节点
+                */
+               /* console.log(this.refs);
+               console.log(this.refs.oIpt1.value); */
+               const {oIpt1} = this.refs;
+               alert(oIpt1.value)
+               
+            }
+
+            //失去焦点事件函数
+            /* 
+                React中绑定的事件函数也可以接受一个参数是event事件对象
+
+                当操作的DOM是自身事件发生的元素的时候，可以不使用ref，直接通过e.target获取即可
+            */
+            showMsg = (event)=>{
+                console.log(event);
+                //event事件对象有一个属性是target，代表事件发生的目标元素
+                console.log(event.target);
+                alert(event.target.value);
+            }
+        }
+
+        //渲染
+        ReactDOM.render(<Demo/>,document.getElementById('test'));
+    </script>
+</body>
+
+</html>
