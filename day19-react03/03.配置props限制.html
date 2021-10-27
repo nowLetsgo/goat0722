@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+    <!-- prop-types库是对props的类型进行检查的 -->
+    <script src="./js/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+
+    <script type="text/babel">
+        class UserInfo extends React.Component{
+            render(){
+                //解构赋值的形式拿到props的每一个属性
+                const{name,age,sex,car,add} = this.props;
+
+                return (
+                    <ul>
+                        <li>姓名是:{name}</li>
+                        <li>性别是:{sex}</li>
+                        <li>年龄是:{age + 1}</li>
+                        <li>座驾是:{car}</li>
+                        <li>地址是:{add}</li>
+                    </ul>
+                )
+            }
+
+            // propTypes和defaultProps都是当前类组件的静态属性，所以可以直接写在class中，用static关键字定义静态属性即可
+            static propTypes ={
+                name:PropTypes.string.isRequired,//字符串类型 必填
+                age:PropTypes.number.isRequired,
+                sex:PropTypes.string.isRequired,
+                car:PropTypes.string.isRequired,
+                add:PropTypes.string.isRequired,
+            }
+
+            static defaultProps = {
+            add:"尚硅谷111"
+        }
+
+        }
+
+       /*  //直接对整个组件做了一个props的限制
+        UserInfo.propTypes ={
+            name:PropTypes.string.isRequired,//字符串类型 必填
+            age:PropTypes.number.isRequired,
+            sex:PropTypes.string.isRequired,
+            car:PropTypes.string.isRequired,
+            add:PropTypes.string.isRequired,
+        }
+        //配置默认值
+        UserInfo.defaultProps = {
+            add:"尚硅谷111"
+        } */
+
+        //模拟请求回来的数据，需要把这个数据放在组件中
+        const msg = {
+            name:"lily",
+            age:19,
+            sex:"男",
+            car:"摩拜",
+            // add:"尚硅谷",
+        }
+        
+        
+        ReactDOM.render(<UserInfo {...msg} hobby="篮球"/>,document.getElementById('test1'))
+        ReactDOM.render(<UserInfo name={msg.name} age={19}sex={msg.sex} car= {msg.car} add={"尚硅谷"} hobby="篮球" />,document.getElementById('test2'))
+    </script>
+</body>
+
+</html>
