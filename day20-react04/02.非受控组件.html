@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+            render(){
+                console.log(this);
+                //for属性在虚拟DOM中无法使用，请使用htmlFor来替代
+                return (
+                    <form onSubmit={this.getValue}>
+                        <div>
+                            <label htmlFor="username">用户名</label>   
+                            <input type="text" ref={el => this.userEle=el} id="username"/> 
+                        </div>
+                        <div>
+                            <label htmlFor="password">密码</label>   
+                            <input type="password" ref={el => this.passEle=el} id="password"/> 
+                        </div>
+                        <button>提交</button>
+                    </form>
+                )
+            }
+
+
+            getValue=(e)=>{
+                //阻止默认事件 
+                e.preventDefault()
+                //直接通过元素获取内容
+                const userValue = this.userEle.value;
+                const passValue = this.passEle.value;
+
+                alert(`用户名是${userValue},密码是${passValue}`)
+            }
+        }
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>

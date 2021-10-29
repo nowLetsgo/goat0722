@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+
+            //state不初始化也能使用，但是按照规范，希望在设置state状态的时候，state状态内容已经被初始化了
+            state = {
+                userValue:"",
+                passValue:"",
+            }
+
+            render(){
+                console.log(this);
+                //for属性在虚拟DOM中无法使用，请使用htmlFor来替代
+                return (
+                    <div>
+                        <form onSubmit={this.getValue}>
+                            <div>
+                                <label htmlFor="username">用户名</label>   
+                                <input type="text" onChange={this.formChange("userValue")} id="username"/> 
+                            </div>
+                            <div>
+                                <label htmlFor="password">密码</label>   
+                                <input type="password" onChange={this.formChange("passValue")} id="password"/> 
+                            </div>
+                            <button>提交</button>
+                        </form>   
+                    </div>
+                )
+            }
+
+            //因为所有的表单改变的逻辑都是一样的，所以我们直接使用一个方法即可
+            formChange = (str)=>{
+                //返回的函数才是真正的事件函数
+                return (e)=>{
+                    this.setState({[str]:e.target.value})
+                }
+            }
+
+        
+
+
+            getValue = () => {
+                //获取state中的数据
+                const {userValue,passValue} = this.state;
+                alert(`用户名是${userValue},密码是${passValue}`)
+            }
+
+        }
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+
+
+        
+    </script>
+</body>
+
+</html>
