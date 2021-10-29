@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Add extends React.Component{
+            //构造器函数
+            constructor(){
+                super();
+                console.log("*****constructor*****","只能执行一次")
+            }
+            state = {
+                num:0
+            }
+
+            //组件即将挂载（新版本删除）
+            componentWillMount(){
+                console.log("****componentWillMount****","只能执行一次");
+            }
+
+            componentWillReceiveProps(){
+                console.log("****componentWillReceiveProps****");
+            }
+
+            //组件渲染
+            render(){
+                console.log(this);
+                console.log("*****我是render*****","执行1+n次，更新也要执行");
+                return (
+                    <div>
+                        <h2>我的值目前是{this.state.num}</h2> 
+                        <button>点击开始累加</button> 
+                        <button onClick={this.death}>卸载组件</button>  
+                    </div>
+                )
+            }
+
+            //组件已经挂载成功
+            componentDidMount(){
+                console.log("*****componentDidMount*****","只能执行一次");
+            }
+
+            //组件即将卸载
+            componentWillUnmount(){
+                console.log("*****compnentWillUnmount******","只能执行一次");
+            }
+
+
+            //卸载组件事件回调
+            death = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+        }
+
+        ReactDOM.render(<Add name="laowang"/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>

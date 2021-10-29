@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+    <style>
+        .pa {
+            width: 500px;
+            /* height: 600px; */
+            padding: 20px;
+            background-color: pink;
+        }
+
+        .ch {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Parent extends React.Component{
+            state = {
+                car:"lsls"
+            }
+
+            render(){
+                return (
+                    <div className="pa">
+                        <h1>我是父组件</h1>
+                        <h1>我开的车是{this.state.car}</h1>
+                        <button onClick={this.change}>父组件换车</button>
+                        <Child car={this.state.car}/>
+                        
+                    </div>
+                )
+            }
+
+            //事件回调
+            change = () => {
+                this.setState({car:"八手奥拓"})
+            }
+        }
+
+        class Child extends React.Component{
+
+            //当父组件更新状态，并通过props传递到子组件的时候，会触发当前生命周期回调函数
+            //首次渲染传递的props是不会触发当前的钩子的
+            componentWillReceiveProps(){
+                console.log("**** componentWillReceiveProps ****");
+            }
+
+
+            //阀门开启，能控制自己state状态更新 和 父组件重新传递props的值
+            shouldComponentUpdate(){
+                console.log("**** shouldComponentUpdate ****")
+                return true
+            }
+
+            //组件即将更新
+            componentWillUpdate(){
+                console.log("**** componentWillUpdate ****");
+            }
+
+
+            render(){
+                return (
+                    <div className="ch">
+                        <h1>我是子组件{this.props.car}</h1>
+                    </div>
+                )
+            }
+
+
+            componentDidUpdate(){
+                console.log("****componentDidUpdate****");
+            }
+        }
+
+        ReactDOM.render(<Parent/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>
