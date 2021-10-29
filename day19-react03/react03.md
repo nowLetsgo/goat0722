@@ -460,7 +460,7 @@
 
 
 
- ## 5. 组件实例三大核心属性2: ref
+ ## 5. 组件实例三大核心属性3: refs
 
 ### 5.1 效果
 
@@ -532,7 +532,7 @@
 </script>
 ```
 
-### 5.4 createRef的使用
+### 5.4 createRef 的使用
 
 ```html
 <script type="text/babel">
