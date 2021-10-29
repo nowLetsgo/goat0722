@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src="./js/react.development.js"></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src="./js/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+
+            //初始化透明度
+            state = {
+                elOpa:1
+            }
+
+            render(){
+               
+                return (
+                    <div>
+                        <h2 style={{opacity:this.state.elOpa}}>React真的很简单</h2> 
+                        <button>学废了吗？</button>   
+                    </div>
+                )
+            }
+        
+            //组件挂载完成的生命周期函数，生命周期函数是在到达某个特定的阶段时，组件实例调用的
+            componentDidMount(){
+                console.log("componentDidMount");
+                setInterval(()=>{
+                    //获取state中透明度的值
+                    let {elOpa} = this.state;
+                    //让透明度累减
+                    elOpa -= 0.1;
+
+                    //临界值判断
+                    if(elOpa <= 0){
+                        elOpa = 1
+                    }
+
+                    //把新的透明度的值设置给state
+                    this.setState({elOpa})
+                },100)
+            }
+        }
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'));
+    </script>
+</body>
+
+</html>
