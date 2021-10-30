@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src='./js/react.development.js'></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src='./js/react-dom.development.js'></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='test'></div>
+    <script type='text/babel'>
+        /* 
+            在react16.3版本之后，更新了声明周期，废弃了3个生命周期函数
+                - componentWillMount
+                - componentWillReceiveProps
+                - componentWillUpdate
+            但是在17版本中，在这三个生命周期函数的前边添加一个UNSAFE_的前缀，则可以正常使用
+            但是不推荐使用了
+        
+        */
+        class Demo extends React.Component{
+            constructor(){
+                super();
+                console.log("constructor","构造器方法");
+            }
+
+            state = {
+                num:0
+            }
+
+            UNSAFE_componentWillMount(){
+                console.log("componentWillMount","组件即将挂载");
+            }
+
+            shouldComponentUpdate(){
+                console.log("shouldComponentUpdate","阀门");
+                return true;
+            }
+
+            UNSAFE_componentWillUpdate(){
+                console.log("componentWillUpdate","组件即将更新");
+            }
+
+            render(){
+                return (
+                    <div>
+                        <h2>num的值现在是{this.state.num}</h2>   
+                        <button onClick={this.add}>累加</button> 
+                    </div>
+                )
+            }
+
+            componentDidUpdate(){
+                console.log("componentDidUpdate","组件已经更新");
+            }
+
+            componentDidMount(){
+                console.log("componentDidMount","组件挂载完成");
+            }
+            
+
+
+            add = () => {
+                let {num} = this.state;
+                this.setState({num:++num})
+            }
+        }
+
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>
