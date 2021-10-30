@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src='./js/react.development.js'></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src='./js/react-dom.development.js'></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='test1'></div>
+    <div id='test2'></div>
+    <script type='text/babel'>
+        /* 
+            1.当key是index的时候
+            初始挂载的虚拟DOM
+                {
+                    <li key=0 >老王--18 <input type="text" /><li>,
+                    <li key=1 >王飞--19 <input type="text" /><li>,
+                    <li key=2 >聪聪--20 <input type="text" /><li>,
+                }
+
+            更新数据的时候 创建新的虚拟DOM
+                {
+                    <li key=0 >程程--21 <input type="text" /><li>,
+                    <li key=1 >老王--18 <input type="text" /><li>,
+                    <li key=2 >王飞--19 <input type="text" /><li>,
+                    <li key=3 >聪聪--20 <input type="text" /><li>,
+                }
+
+
+            2.当key是id的时候
+            初始挂载的虚拟DOM
+                {
+                    <li key=001 >老王--18<li>,
+                    <li key=002 >王飞--19<li>,
+                    <li key=003 >聪聪--20<li>,
+                }
+
+            更新数据的时候 创建新的虚拟DOM
+                {
+                    <li key=004 >程程--21<li>,
+                    <li key=001 >老王--18<li>,
+                    <li key=002 >王飞--19<li>,
+                    <li key=003 >聪聪--20<li>,
+                }
+    
+    
+        */
+        class Demo1 extends React.Component{
+            state = {
+                person:[
+                    {id:"001",name:"老王",age:18},
+                    {id:"002",name:"王飞",age:19},
+                    {id:"003",name:"聪聪",age:20}
+                ]
+            }
+            render(){
+                const {person} = this.state;
+                console.log(person);
+                return (
+                    <div>
+                        <button onClick={this.add}>添加人员信息</button>    
+                        <ul>
+                            {
+                                person.map((item,index) => {
+                                    return <li key={index}>{item.name}----{item.age} <input type="text" /></li>
+                                })
+                            }    
+                        </ul>
+                    </div>
+                )
+
+                
+            }
+
+
+            add = () => {
+                const {person} = this.state;
+                person.unshift({id:"004",name:"程程",age:21})
+
+                this.setState({person})
+            }
+        }
+        ReactDOM.render(<Demo1/>,document.getElementById('test1'))
+
+
+
+        class Demo2 extends React.Component{
+            state = {
+                person:[
+                    {id:"001",name:"老王",age:18},
+                    {id:"002",name:"王飞",age:19},
+                    {id:"003",name:"聪聪",age:20}
+                ]
+            }
+            render(){
+                const {person} = this.state;
+                console.log(person);
+                return (
+                    <div>
+                        <button onClick={this.add}>添加人员信息</button>    
+                        <ul>
+                            {
+                                person.map((item,index) => {
+                                    return <li key={item.id}>{item.name}----{item.age} <input type="text" /></li>
+                                })
+                            }    
+                        </ul>
+                    </div>
+                )
+            }
+
+            add = () => {
+                const {person} = this.state;
+                person.unshift({id:"004",name:"程程",age:21})
+
+                this.setState({person})
+            }
+        }
+        ReactDOM.render(<Demo2/>,document.getElementById('test2'))
+    </script>
+</body>
+
+</html>
