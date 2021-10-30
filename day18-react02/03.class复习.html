@@ -32,6 +32,10 @@
             //hello是Person构造函数的静态属性-只有Person才能调用
             static hello = "world";
 
+            static do() {
+                console.log(this);
+            }
+
             //eat方法--->在原型对象上(原型对象上的方法供实例化对象使用)
             eat() {
                 //原型对象的方法是被实例化对象调用的，所以原型对象方法中的this指向实例化对象
@@ -46,6 +50,9 @@
 
         const p1 = new Person("laowang", 19);
         console.log("p1", p1);
+
+
+        Person.do()
     </script>
 </body>
 

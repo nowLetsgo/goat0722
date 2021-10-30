@@ -83,7 +83,9 @@
             }
 
 
-            componentDidUpdate(){
+
+            componentDidUpdate(preProps,preState){
+                console.log(preProps,preState);
                 console.log("****componentDidUpdate****");
             }
         }

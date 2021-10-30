@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src='./js/react.development.js'></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src='./js/react-dom.development.js'></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src='./js/babel.min.js'></script>
+    <style>
+        .list {
+            list-style: none;
+            width: 300px;
+            height: 200px;
+            background-color: red;
+            padding: 0;
+            overflow: auto;
+        }
+
+        .list .item {
+            height: 40px;
+            line-height: 40px;
+            font-size: 24px;
+            background-color: aqua;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id='test'></div>
+    <script type='text/babel'>
+
+        class Demo extends React.Component{
+
+            state = {
+                news:[]
+            }
+
+            render(){
+                const {news} = this.state;
+                return (
+                    <ul className="list" ref={c => this.listEle = c}>
+                        {
+                            news.map((item,index) => {
+                                return <li className="item" key={index}>{item}</li>
+                            })
+                        }
+                    </ul>
+                )
+            }
+
+            componentDidMount(){
+                let i = 0;
+                setInterval(() => {
+                    i++;
+                    const {news} = this.state;
+                    news.unshift("新闻"+i);
+                    this.setState({news})
+                }, 1000);
+            }
+
+            //快照
+            getSnapshotBeforeUpdate(){
+                //记录当前的滚动条能滚动的总距离
+                return this.listEle.scrollHeight;
+            }
+
+
+            componentDidUpdate(_,__,snapshot){
+                //当DOM更新后，获取新的list的高度 减去快照中list滚动条的高度，即可以得到更新的数据高度
+                const x = this.listEle.scrollHeight - snapshot;
+                //每次新增数据后，让当前的滚动条加上这个数据的高度
+                this.listEle.scrollTop = this.listEle.scrollTop + x;
+            }
+        }
+
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>

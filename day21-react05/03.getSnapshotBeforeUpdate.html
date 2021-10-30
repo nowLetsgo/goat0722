@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <!-- React的核心库 -->
+    <script src='./js/react.development.js'></script>
+    <!-- React的操作DOM的js文件 -->
+    <script src='./js/react-dom.development.js'></script>
+    <!-- babel是用来编译React的JSX语法为JS语法的 -->
+    <script src='./js/babel.min.js'></script>
+</head>
+
+<body>
+    <div id='test'></div>
+    <script type='text/babel'>
+
+        class Demo extends React.Component{
+
+            state = {
+                num:140
+            }
+
+            render(){
+                return (
+                    <div>
+                        <h2>num的值现在是{this.state.num}</h2>   
+                        <button onClick={this.add}>累加</button> 
+                    </div>
+                )
+            }
+
+            getSnapshotBeforeUpdate(){
+                console.log("getSnapshotBeforeUpdate");
+                return "快照"
+            }
+
+            componentDidUpdate(preProps,prevState,snapshot){
+                console.log(preProps,prevState,snapshot);
+                console.log("componentDidUpdate");
+            }
+
+            
+            add = () => {
+                let {num} = this.state;
+                this.setState({num:++num})
+            }
+        }
+
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+</body>
+
+</html>

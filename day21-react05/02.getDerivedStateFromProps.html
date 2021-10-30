@@ -15,21 +15,46 @@
 <body>
     <div id='test'></div>
     <script type='text/babel'>
+
         class Demo extends React.Component{
 
             state = {
-                num:0
+                num:140
             }
 
             //getDerivedStateFromProps生命周期函数不能写在实例对象上，而是需要写成静态方法
             //getDerivedStateFromProps 会在调用 render 方法之前调用，并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 state，如果返回 null 则不更新任何内容。
-            static getDerivedStateFromProps(){
+            /* 
+                粗略的说（官网）：state 的值在任何时候都取决于 props
+
+                详细的说：
+                    1. 可以完成：直接复制 props 到 state 上；
+                    2. 可以完成：经过一些逻辑比较了props和state，然后决定是否去更新state
+                
+                这个方法接受两个参数，分别是props和state
+            */
+            static getDerivedStateFromProps(props,state){
+                // console.log(this);
+                console.log("props,state",props,state);
                 console.log("getDerivedStateFromProps");
+                
+                //案例：做逻辑判断：状态中的num在渲染时,判断如果num和prop的和等于250的时候，直接恢复num为0
                 //需要返回一个状态对象或者null
-                return null
+                const {num} = state;
+                const {n} = props;
+
+                
+                if(num + n === 250){
+                    //返回一个派生的state
+                    return {num:0}
+                }
+                
+                //不对state做任何操作
+                return null;
             }
 
             render(){
+                
                 return (
                     <div>
                         <h2>num的值现在是{this.state.num}</h2>   
@@ -46,7 +71,7 @@
         }
 
 
-        ReactDOM.render(<Demo/>,document.getElementById('test'))
+        ReactDOM.render(<Demo n={100}/>,document.getElementById('test'))
     </script>
 </body>
 
